@@ -1,11 +1,13 @@
 package com.usst.controller.account;
 
+import com.usst.entity.account.UserLogin;
 import com.usst.service.api.account.IUserLogin;
 import javax.annotation.Resource;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/userLogin")
@@ -13,11 +15,13 @@ public class UserLoginDataController {
     @Resource
     IUserLogin userLoginService;
 
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String loginApi(@RequestParam(value = "userId", required = true) String userId,
-                           @RequestParam(value = "userPassword",required = true) String userPassword){
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String,Boolean> loginApi(@RequestBody UserLogin userLogin){
         System.out.println("loginApi()");
-        boolean userLogin = userLoginService.login(userId,userPassword);
-        return "/index";
+        Map<String,Boolean> rmap = new HashMap<String,Boolean>();
+        boolean result = userLoginService.login(userLogin.getUserId(),userLogin.getUserPassword());
+        rmap.put("result",result);
+        return rmap;
     }
 }

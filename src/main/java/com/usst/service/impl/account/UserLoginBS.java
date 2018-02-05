@@ -7,18 +7,24 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import javax.xml.registry.infomodel.User;
 
-@Service("loginService")
+@Service("userLoginService")
 public class UserLoginBS implements IUserLogin {
 
     @Resource
-    private UserLoginMapper userLoginMapper;
+    private UserLoginBE userLoginBE;
+
+    public void setUserLoginBE(UserLoginBE userLoginBE) {
+        this.userLoginBE = userLoginBE;
+    }
 
     @Override
+
     public boolean login(String userId, String userPassword) {
         System.out.println("UserLoginBS-----");
-        userId = "test";
-        UserLogin userInfo = (UserLogin) userLoginMapper.selectByPrimaryKey(userId);
-        System.out.println(userInfo.getUserPassword());
-        return false;
+        boolean result = false;
+        if(userLoginBE.isValid(userId,userPassword)) {
+            result = true;
+        }
+        return result;
     }
 }
