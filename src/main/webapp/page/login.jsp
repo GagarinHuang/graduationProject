@@ -13,16 +13,15 @@
 <p onclick="loginAjax()"> into</p>
 </body>
 <script>
-    alert(1);
-    // function loginAjax(){
-    //     $.ajax({
-    //         url:"/login",
-    //         type:'post',
-    //         dataType:'json',
-    //         data:{},
-    //         success:function(data){
-    //         }
-    //     });
-    // }
+    function loginAjax(){
+        $.ajax({
+            url:"/login",
+            type:'post',
+            dataType:'json',
+            data:{},
+            success:function(data){
+            }
+        });
+    }
 </script>
 </html>
