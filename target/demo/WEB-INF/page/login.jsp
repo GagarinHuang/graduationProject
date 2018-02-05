@@ -10,7 +10,7 @@
 <script src="res/plugin/jquery-3.2.0.min.js" type="text/javascript"></script>
 <body>
 <h2>Hello World!</h2>
-<a href="loginAjax()"> into</a>
+<p onclick="loginAjax()"> into</p>
 </body>
 <script>
     function loginAjax(){
