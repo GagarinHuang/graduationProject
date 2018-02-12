@@ -71,9 +71,11 @@ a:hover {
 }
 .ls-form .form-group-center{
     text-align:center;
-    margin-top: 100px;
-    margin-bottom:0px;
+    color: black;
+    font-size: large;
+    font-weight: bolder;
 }
+
 .ls-form .form-group p {
     font-size: 14px;
     color: #9f9f9f;
@@ -142,8 +144,10 @@ a:hover {
     border-bottom: 1px solid rgba(0, 0, 0, 0.4);
 }
 
+
 .btn-primary {
-    height: 50px;
+    cursor: pointer;
+    margin: auto;
     padding-right: 20px;
     padding-left: 20px;
     border: none;
@@ -156,8 +160,23 @@ a:hover {
 }
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active {
     color: #ffffff;
-    background: #47d1d1 !important;
+    background: #41d14a !important;
     outline: none;
+}
+.calendar{
+    width: 40px;
+    height: 40px;
+    background-image: url('../images/calendar.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: #FFFFFF;
+    border: none;
+    -webkit-transition: all 0.2s ease 0s;
+    -moz-transition: all 0.2s ease 0s;
+    -o-transition: all 0.2s ease 0s;
+    -ms-transition: all 0.2s ease 0s;
+    transition: all 0.2s ease 0s;
+
 }
 
 input, textarea {

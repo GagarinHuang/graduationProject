@@ -23,8 +23,8 @@ $(function () {
 	/*
 	* Fun Fact with Count Animation
 	*/
-	$('.st-ff-count').appear();
-	$(document.body).on('appear', '.st-ff-count', function(e, $affected) {
+	$('.mc-ff-count').appear();
+	$(document.body).on('appear', '.mc-ff-count', function(e, $affected) {
 		$affected.each(function(i) {
 			if (parseInt($(this).data('runit'))) {
 				$(this).countTo({
@@ -43,7 +43,7 @@ $(function () {
 
 
     function home_height () {
-		var element = $('.st-home-unit'),
+		var element = $('.mc-home-unit'),
 			elemHeight = element.height(),
 			winHeight = $(window).height()
 			padding = (winHeight - elemHeight - 200) /2;
@@ -62,7 +62,7 @@ $(function () {
 
 	var fadeStart=$(window).height()/3 // 100px scroll or less will equiv to 1 opacity
     ,fadeUntil=$(window).height() // 200px scroll or more will equiv to 0 opacity
-    ,fading = $('.st-home-unit')
+    ,fading = $('.mc-home-unit')
     ,fading2 = $('.hero-overlayer')
 	;
 
@@ -81,9 +81,9 @@ $(function () {
 	    fading.css({'opacity': opacity});
 
 	    if (offset >= 120) {
-	    	$('.st-navbar').addClass("st-navbar-mini");
+	    	$('.mc-navbar').addClass("mc-navbar-mini");
 	    } else if (offset <= 119) {
-	    	$('.st-navbar').removeClass("st-navbar-mini");
+	    	$('.mc-navbar').removeClass("mc-navbar-mini");
 	    }
 	});
 

@@ -455,7 +455,8 @@ h6 {
   background-size: 100% 100%;
   background-color: #000;
   padding: 100px 0;
-  position: relative
+  position: relative;
+
   /* Temp CSS */
   /* Temp CSS End */
 }
@@ -525,7 +526,7 @@ h6 {
   margin-bottom: 0 !important;
   height: 102px;
   -webkit-transition: background-color 0.3s, height 0.3s;
-          transition: background-color 0.3s, height 0.3s;
+  transition: background-color 0.3s, height 0.3s;
 }
 .mc-navbar-mini .navbar-default {
   background-color: rgba(40, 40, 40, 0.95);
@@ -547,12 +548,12 @@ h6 {
   height: auto;
   padding: 27px 15px;
   -webkit-transition: padding 0.3s;
-          transition: padding 0.3s;
+  transition: padding 0.3s;
 }
 .navbar-brand img {
   height: 40px;
   -webkit-transition: height 0.3s;
-          transition: height 0.3s;
+  transition: height 0.3s;
 }
 .navbar-nav > li > a {
   font-family: "Oswald";
@@ -563,7 +564,7 @@ h6 {
   padding-right: 20px;
   color: #fff;
   -webkit-transition: color 0.3s, background-color 0.3s, padding 0.3s;
-          transition: color 0.3s, background-color 0.3s, padding 0.3s;
+  transition: color 0.3s, background-color 0.3s, padding 0.3s;
 }
 .navbar-nav > li > a:hover,
 .navbar-nav > li > a:focus,
