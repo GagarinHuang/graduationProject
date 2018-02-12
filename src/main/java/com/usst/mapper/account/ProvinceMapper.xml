@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.usst.dao.account.ProvinceMapper" >
+  <resultMap id="BaseResultMap" type="com.usst.entity.account.Province" >
+    <id column="province_id" property="provinceId" jdbcType="VARCHAR" />
+    <result column="province_name" property="provinceName" jdbcType="VARCHAR" />
+    <result column="country_id" property="countryId" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="provList" type="com.usst.entity.account.Province" >
+    <result column="province_id" property="provinceId" jdbcType="VARCHAR" />
+    <result column="province_name" property="provinceName" jdbcType="VARCHAR" />
+    <result column="country_id" property="countryId" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    province_id, province_name, country_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from province
+    where province_id = #{provinceId,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAllRecords" resultMap="provList">
+    select
+    <include refid="Base_Column_List" />
+    from province
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from province
+    where province_id = #{provinceId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.usst.entity.account.Province" >
+    insert into province (province_id, province_name, country_id
+      )
+    values (#{provinceId,jdbcType=VARCHAR}, #{provinceName,jdbcType=VARCHAR}, #{countryId,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.usst.entity.account.Province" >
+    insert into province
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="provinceId != null" >
+        province_id,
+      </if>
+      <if test="provinceName != null" >
+        province_name,
+      </if>
+      <if test="countryId != null" >
+        country_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="provinceId != null" >
+        #{provinceId,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceName != null" >
+        #{provinceName,jdbcType=VARCHAR},
+      </if>
+      <if test="countryId != null" >
+        #{countryId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.usst.entity.account.Province" >
+    update province
+    <set >
+      <if test="provinceName != null" >
+        province_name = #{provinceName,jdbcType=VARCHAR},
+      </if>
+      <if test="countryId != null" >
+        country_id = #{countryId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where province_id = #{provinceId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.usst.entity.account.Province" >
+    update province
+    set province_name = #{provinceName,jdbcType=VARCHAR},
+      country_id = #{countryId,jdbcType=VARCHAR}
+    where province_id = #{provinceId,jdbcType=VARCHAR}
+  </update>
+</mapper>

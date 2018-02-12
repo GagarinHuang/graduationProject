@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.usst.dao.account.AffiliationMapper" >
+  <resultMap id="BaseResultMap" type="com.usst.entity.account.Affiliation" >
+    <id column="affiliation_id" property="affiliationId" jdbcType="VARCHAR" />
+    <result column="affiliation_name" property="affiliationName" jdbcType="VARCHAR" />
+    <result column="province_id" property="provinceId" jdbcType="VARCHAR" />
+    <result column="municipality_id" property="municipalityId" jdbcType="VARCHAR" />
+    <result column="country_id" property="countryId" jdbcType="VARCHAR" />
+    <result column="district_id" property="districtId" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    affiliation_id, affiliation_name, province_id, municipality_id, country_id, district_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from affiliation
+    where affiliation_id = #{affiliationId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from affiliation
+    where affiliation_id = #{affiliationId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.usst.entity.account.Affiliation" >
+    insert into affiliation (affiliation_id, affiliation_name, province_id, 
+      municipality_id, country_id, district_id
+      )
+    values (#{affiliationId,jdbcType=VARCHAR}, #{affiliationName,jdbcType=VARCHAR}, #{provinceId,jdbcType=VARCHAR}, 
+      #{municipalityId,jdbcType=VARCHAR}, #{countryId,jdbcType=VARCHAR}, #{districtId,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.usst.entity.account.Affiliation" >
+    insert into affiliation
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="affiliationId != null" >
+        affiliation_id,
+      </if>
+      <if test="affiliationName != null" >
+        affiliation_name,
+      </if>
+      <if test="provinceId != null" >
+        province_id,
+      </if>
+      <if test="municipalityId != null" >
+        municipality_id,
+      </if>
+      <if test="countryId != null" >
+        country_id,
+      </if>
+      <if test="districtId != null" >
+        district_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="affiliationId != null" >
+        #{affiliationId,jdbcType=VARCHAR},
+      </if>
+      <if test="affiliationName != null" >
+        #{affiliationName,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceId != null" >
+        #{provinceId,jdbcType=VARCHAR},
+      </if>
+      <if test="municipalityId != null" >
+        #{municipalityId,jdbcType=VARCHAR},
+      </if>
+      <if test="countryId != null" >
+        #{countryId,jdbcType=VARCHAR},
+      </if>
+      <if test="districtId != null" >
+        #{districtId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.usst.entity.account.Affiliation" >
+    update affiliation
+    <set >
+      <if test="affiliationName != null" >
+        affiliation_name = #{affiliationName,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceId != null" >
+        province_id = #{provinceId,jdbcType=VARCHAR},
+      </if>
+      <if test="municipalityId != null" >
+        municipality_id = #{municipalityId,jdbcType=VARCHAR},
+      </if>
+      <if test="countryId != null" >
+        country_id = #{countryId,jdbcType=VARCHAR},
+      </if>
+      <if test="districtId != null" >
+        district_id = #{districtId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where affiliation_id = #{affiliationId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.usst.entity.account.Affiliation" >
+    update affiliation
+    set affiliation_name = #{affiliationName,jdbcType=VARCHAR},
+      province_id = #{provinceId,jdbcType=VARCHAR},
+      municipality_id = #{municipalityId,jdbcType=VARCHAR},
+      country_id = #{countryId,jdbcType=VARCHAR},
+      district_id = #{districtId,jdbcType=VARCHAR}
+    where affiliation_id = #{affiliationId,jdbcType=VARCHAR}
+  </update>
+</mapper>

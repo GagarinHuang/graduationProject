@@ -43,11 +43,32 @@
             <property name="enableSubPackages" value="false" />
         </javaClientGenerator>
 
-        <!--对应数据库表 mysql可以加入主键自增 字段命名 忽略某字段等 -->
-        <table schema="exammanagementsystem" tableName="user_login"
+        <!--&lt;!&ndash;对应数据库表 mysql可以加入主键自增 字段命名 忽略某字段等 &ndash;&gt;-->
+        <!--<table schema="exammanagementsystem" tableName="question"-->
+               <!--enableCountByExample="false" enableUpdateByExample="false"-->
+               <!--enableDeleteByExample="false" enableSelectByExample="false"-->
+               <!--selectByExampleQueryId="false" >-->
+            <!--<columnOverride column="description" javaType="java.lang.String" jdbcType="VARCHAR" />-->
+            <!--<columnOverride column="item_a" javaType="java.lang.String" jdbcType="VARCHAR" />-->
+            <!--<columnOverride column="item_b" javaType="java.lang.String" jdbcType="VARCHAR" />-->
+            <!--<columnOverride column="item_c" javaType="java.lang.String" jdbcType="VARCHAR" />-->
+            <!--<columnOverride column="item_d" javaType="java.lang.String" jdbcType="VARCHAR" />-->
+            <!--<columnOverride column="item_e" javaType="java.lang.String" jdbcType="VARCHAR" />-->
+            <!--<columnOverride column="answer" javaType="java.lang.String" jdbcType="VARCHAR" />-->
+            <!--<columnOverride column="explanation" javaType="java.lang.String" jdbcType="VARCHAR" />-->
+            <!--<columnOverride column="comment" javaType="java.lang.String" jdbcType="VARCHAR" />-->
+            <!--<columnOverride column="attach_description" javaType="java.lang.byte[]" jdbcType="LONGBLOB" />-->
+            <!--<columnOverride column="attach_a" javaType="java.lang.byte[]" jdbcType="LONGBLOB" />-->
+            <!--<columnOverride column="attach_b" javaType="java.lang.byte[]" jdbcType="LONGBLOB" />-->
+            <!--<columnOverride column="attach_c" javaType="java.lang.byte[]" jdbcType="LONGBLOB" />-->
+            <!--<columnOverride column="attach_d" javaType="java.lang.byte[]" jdbcType="LONGBLOB" />-->
+            <!--<columnOverride column="attach_e" javaType="java.lang.byte[]" jdbcType="LONGBLOB" />-->
+            <!--<columnOverride column="attach_explanation" javaType="java.lang.byte[]" jdbcType="LONGBLOB" />-->
+        <!--</table>-->
+        <!-- 指定数据库表 -->
+        <table schema="exammanagementsystem" tableName="question_set"
                enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
-               selectByExampleQueryId="false" />
-        <!-- 指定数据库表 -->
-    </context>
+               selectByExampleQueryId="false" ></table>
+</context>
 </generatorConfiguration>

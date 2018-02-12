@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.usst.dao.question.TextbookMapper" >
+  <resultMap id="BaseResultMap" type="com.usst.entity.question.Textbook" >
+    <id column="text_book_id" property="textBookId" jdbcType="VARCHAR" />
+    <result column="text_book_name" property="textBookName" jdbcType="VARCHAR" />
+    <result column="publisher" property="publisher" jdbcType="VARCHAR" />
+    <result column="pub_date" property="pubDate" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="txtbkList" type="com.usst.entity.question.Textbook" >
+    <result column="text_book_id" property="textBookId" jdbcType="VARCHAR" />
+    <result column="text_book_name" property="textBookName" jdbcType="VARCHAR" />
+    <result column="publisher" property="publisher" jdbcType="VARCHAR" />
+    <result column="pub_date" property="pubDate" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    text_book_id, text_book_name, publisher, pub_date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from textbook
+    where text_book_id = #{textBookId,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAllRecords" resultMap="txtbkList">
+    select
+    <include refid="Base_Column_List" />
+    from textbook
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from textbook
+    where text_book_id = #{textBookId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.usst.entity.question.Textbook" >
+    insert into textbook (text_book_id, text_book_name, publisher, 
+      pub_date)
+    values (#{textBookId,jdbcType=VARCHAR}, #{textBookName,jdbcType=VARCHAR}, #{publisher,jdbcType=VARCHAR}, 
+      #{pubDate,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.usst.entity.question.Textbook" >
+    insert into textbook
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="textBookId != null" >
+        text_book_id,
+      </if>
+      <if test="textBookName != null" >
+        text_book_name,
+      </if>
+      <if test="publisher != null" >
+        publisher,
+      </if>
+      <if test="pubDate != null" >
+        pub_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="textBookId != null" >
+        #{textBookId,jdbcType=VARCHAR},
+      </if>
+      <if test="textBookName != null" >
+        #{textBookName,jdbcType=VARCHAR},
+      </if>
+      <if test="publisher != null" >
+        #{publisher,jdbcType=VARCHAR},
+      </if>
+      <if test="pubDate != null" >
+        #{pubDate,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.usst.entity.question.Textbook" >
+    update textbook
+    <set >
+      <if test="textBookName != null" >
+        text_book_name = #{textBookName,jdbcType=VARCHAR},
+      </if>
+      <if test="publisher != null" >
+        publisher = #{publisher,jdbcType=VARCHAR},
+      </if>
+      <if test="pubDate != null" >
+        pub_date = #{pubDate,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where text_book_id = #{textBookId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.usst.entity.question.Textbook" >
+    update textbook
+    set text_book_name = #{textBookName,jdbcType=VARCHAR},
+      publisher = #{publisher,jdbcType=VARCHAR},
+      pub_date = #{pubDate,jdbcType=VARCHAR}
+    where text_book_id = #{textBookId,jdbcType=VARCHAR}
+  </update>
+</mapper>

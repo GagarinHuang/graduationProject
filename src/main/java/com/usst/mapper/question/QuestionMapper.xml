@@ -1,0 +1,466 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.usst.dao.question.QuestionMapper" >
+  <resultMap id="BaseResultMap" type="com.usst.entity.question.Question" >
+    <id column="question_id" property="questionId" jdbcType="VARCHAR" />
+    <result column="level_id" property="levelId" jdbcType="VARCHAR" />
+    <result column="subject_id" property="subjectId" jdbcType="VARCHAR" />
+    <result column="exam_tpye_id" property="examTpyeId" jdbcType="VARCHAR" />
+    <result column="textbook_id" property="textbookId" jdbcType="VARCHAR" />
+    <result column="knowledge_point_id" property="knowledgePointId" jdbcType="VARCHAR" />
+    <result column="semester" property="semester" jdbcType="SMALLINT" />
+    <result column="module" property="module" jdbcType="SMALLINT" />
+    <result column="chapter" property="chapter" jdbcType="SMALLINT" />
+    <result column="unit" property="unit" jdbcType="SMALLINT" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="attach_description" property="attachDescription" jdbcType="BLOB" />
+    <result column="item_a" property="itemA" jdbcType="VARCHAR" />
+    <result column="item_b" property="itemB" jdbcType="VARCHAR" />
+    <result column="item_c" property="itemC" jdbcType="VARCHAR" />
+    <result column="item_d" property="itemD" jdbcType="VARCHAR" />
+    <result column="item_e" property="itemE" jdbcType="VARCHAR" />
+    <result column="answer" property="answer" jdbcType="VARCHAR" />
+    <result column="attach_a" property="attachA" jdbcType="BLOB" />
+    <result column="attach_b" property="attachB" jdbcType="BLOB" />
+    <result column="attach_c" property="attachC" jdbcType="BLOB" />
+    <result column="attach_d" property="attachD" jdbcType="BLOB" />
+    <result column="attach_e" property="attachE" jdbcType="BLOB" />
+    <result column="explanation" property="explanation" jdbcType="VARCHAR" />
+    <result column="attach_explanation" property="attachExplanation" jdbcType="BLOB" />
+    <result column="question_status" property="questionStatus" jdbcType="SMALLINT" />
+    <result column="question_type" property="questionType" jdbcType="SMALLINT" />
+    <result column="question_set_id" property="questionSetId" jdbcType="VARCHAR" />
+    <result column="branch_id" property="branchId" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="VARCHAR" />
+    <result column="timestamp" property="timestamp" jdbcType="TIMESTAMP" />
+    <result column="grade" property="grade" jdbcType="INTEGER" />
+    <result column="comment" property="comment" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="qList" type="com.usst.entity.question.Question" >
+    <id column="user_id" property="userId" jdbcType="VARCHAR" />
+    <result column="question_id" property="questionId" jdbcType="VARCHAR" />
+    <result column="level_id" property="levelId" jdbcType="VARCHAR" />
+    <result column="subject_id" property="subjectId" jdbcType="VARCHAR" />
+    <result column="exam_tpye_id" property="examTpyeId" jdbcType="VARCHAR" />
+    <result column="textbook_id" property="textbookId" jdbcType="VARCHAR" />
+    <result column="knowledge_point_id" property="knowledgePointId" jdbcType="VARCHAR" />
+    <result column="semester" property="semester" jdbcType="SMALLINT" />
+    <result column="module" property="module" jdbcType="SMALLINT" />
+    <result column="chapter" property="chapter" jdbcType="SMALLINT" />
+    <result column="unit" property="unit" jdbcType="SMALLINT" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="attach_description" property="attachDescription" jdbcType="BLOB" />
+    <result column="item_a" property="itemA" jdbcType="VARCHAR" />
+    <result column="item_b" property="itemB" jdbcType="VARCHAR" />
+    <result column="item_c" property="itemC" jdbcType="VARCHAR" />
+    <result column="item_d" property="itemD" jdbcType="VARCHAR" />
+    <result column="item_e" property="itemE" jdbcType="VARCHAR" />
+    <result column="answer" property="answer" jdbcType="VARCHAR" />
+    <result column="attach_a" property="attachA" jdbcType="BLOB" />
+    <result column="attach_b" property="attachB" jdbcType="BLOB" />
+    <result column="attach_c" property="attachC" jdbcType="BLOB" />
+    <result column="attach_d" property="attachD" jdbcType="BLOB" />
+    <result column="attach_e" property="attachE" jdbcType="BLOB" />
+    <result column="explanation" property="explanation" jdbcType="VARCHAR" />
+    <result column="attach_explanation" property="attachExplanation" jdbcType="BLOB" />
+    <result column="question_status" property="questionStatus" jdbcType="SMALLINT" />
+    <result column="question_type" property="questionType" jdbcType="SMALLINT" />
+    <result column="question_set_id" property="questionSetId" jdbcType="VARCHAR" />
+    <result column="branch_id" property="branchId" jdbcType="VARCHAR" />
+    <result column="timestamp" property="timestamp" jdbcType="TIMESTAMP" />
+    <result column="grade" property="grade" jdbcType="INTEGER" />
+    <result column="comment" property="comment" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    question_id, level_id, subject_id, exam_tpye_id, textbook_id, knowledge_point_id, 
+    semester, module, chapter, unit, description, attach_description, item_a, item_b, 
+    item_c, item_d, item_e, answer, attach_a, attach_b, attach_c, attach_d, attach_e, 
+    explanation, attach_explanation, question_status, question_type, question_set_id, 
+    branch_id, user_id, timestamp, grade, comment
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from question
+    where question_id = #{questionId,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAllRecordsByUserId" resultMap="qList" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from question
+    where user_id = #{userId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from question
+    where question_id = #{questionId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.usst.entity.question.Question" >
+    insert into question (question_id, level_id, subject_id, 
+      exam_tpye_id, textbook_id, knowledge_point_id, 
+      semester, module, chapter, 
+      unit, description, attach_description, 
+      item_a, item_b, item_c, 
+      item_d, item_e, answer, 
+      attach_a, attach_b, attach_c, 
+      attach_d, attach_e, explanation, 
+      attach_explanation, question_status, question_type, 
+      question_set_id, branch_id, user_id, 
+      timestamp, grade, comment
+      )
+    values (#{questionId,jdbcType=VARCHAR}, #{levelId,jdbcType=VARCHAR}, #{subjectId,jdbcType=VARCHAR}, 
+      #{examTpyeId,jdbcType=VARCHAR}, #{textbookId,jdbcType=VARCHAR}, #{knowledgePointId,jdbcType=VARCHAR}, 
+      #{semester,jdbcType=SMALLINT}, #{module,jdbcType=SMALLINT}, #{chapter,jdbcType=SMALLINT}, 
+      #{unit,jdbcType=SMALLINT}, #{description,jdbcType=VARCHAR}, #{attachDescription,jdbcType=BLOB},
+      #{itemA,jdbcType=VARCHAR}, #{itemB,jdbcType=VARCHAR}, #{itemC,jdbcType=VARCHAR}, 
+      #{itemD,jdbcType=VARCHAR}, #{itemE,jdbcType=VARCHAR}, #{answer,jdbcType=VARCHAR}, 
+      #{attachA,jdbcType=BLOB}, #{attachB,jdbcType=BLOB}, #{attachC,jdbcType=BLOB},
+      #{attachD,jdbcType=BLOB}, #{attachE,jdbcType=BLOB}, #{explanation,jdbcType=VARCHAR},
+      #{attachExplanation,jdbcType=BLOB}, #{questionStatus,jdbcType=SMALLINT}, #{questionType,jdbcType=SMALLINT},
+      #{questionSetId,jdbcType=VARCHAR}, #{branchId,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, 
+      #{timestamp,jdbcType=TIMESTAMP}, #{grade,jdbcType=INTEGER}, #{comment,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.usst.entity.question.Question" >
+    insert into question
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="questionId != null" >
+        question_id,
+      </if>
+      <if test="levelId != null" >
+        level_id,
+      </if>
+      <if test="subjectId != null" >
+        subject_id,
+      </if>
+      <if test="examTpyeId != null" >
+        exam_tpye_id,
+      </if>
+      <if test="textbookId != null" >
+        textbook_id,
+      </if>
+      <if test="knowledgePointId != null" >
+        knowledge_point_id,
+      </if>
+      <if test="semester != null" >
+        semester,
+      </if>
+      <if test="module != null" >
+        module,
+      </if>
+      <if test="chapter != null" >
+        chapter,
+      </if>
+      <if test="unit != null" >
+        unit,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+      <if test="attachDescription != null" >
+        attach_description,
+      </if>
+      <if test="itemA != null" >
+        item_a,
+      </if>
+      <if test="itemB != null" >
+        item_b,
+      </if>
+      <if test="itemC != null" >
+        item_c,
+      </if>
+      <if test="itemD != null" >
+        item_d,
+      </if>
+      <if test="itemE != null" >
+        item_e,
+      </if>
+      <if test="answer != null" >
+        answer,
+      </if>
+      <if test="attachA != null" >
+        attach_a,
+      </if>
+      <if test="attachB != null" >
+        attach_b,
+      </if>
+      <if test="attachC != null" >
+        attach_c,
+      </if>
+      <if test="attachD != null" >
+        attach_d,
+      </if>
+      <if test="attachE != null" >
+        attach_e,
+      </if>
+      <if test="explanation != null" >
+        explanation,
+      </if>
+      <if test="attachExplanation != null" >
+        attach_explanation,
+      </if>
+      <if test="questionStatus != null" >
+        question_status,
+      </if>
+      <if test="questionType != null" >
+        question_type,
+      </if>
+      <if test="questionSetId != null" >
+        question_set_id,
+      </if>
+      <if test="branchId != null" >
+        branch_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="timestamp != null" >
+        timestamp,
+      </if>
+      <if test="grade != null" >
+        grade,
+      </if>
+      <if test="comment != null" >
+        comment,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="questionId != null" >
+        #{questionId,jdbcType=VARCHAR},
+      </if>
+      <if test="levelId != null" >
+        #{levelId,jdbcType=VARCHAR},
+      </if>
+      <if test="subjectId != null" >
+        #{subjectId,jdbcType=VARCHAR},
+      </if>
+      <if test="examTpyeId != null" >
+        #{examTpyeId,jdbcType=VARCHAR},
+      </if>
+      <if test="textbookId != null" >
+        #{textbookId,jdbcType=VARCHAR},
+      </if>
+      <if test="knowledgePointId != null" >
+        #{knowledgePointId,jdbcType=VARCHAR},
+      </if>
+      <if test="semester != null" >
+        #{semester,jdbcType=SMALLINT},
+      </if>
+      <if test="module != null" >
+        #{module,jdbcType=SMALLINT},
+      </if>
+      <if test="chapter != null" >
+        #{chapter,jdbcType=SMALLINT},
+      </if>
+      <if test="unit != null" >
+        #{unit,jdbcType=SMALLINT},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="attachDescription != null" >
+        #{attachDescription,jdbcType=BLOB},
+      </if>
+      <if test="itemA != null" >
+        #{itemA,jdbcType=VARCHAR},
+      </if>
+      <if test="itemB != null" >
+        #{itemB,jdbcType=VARCHAR},
+      </if>
+      <if test="itemC != null" >
+        #{itemC,jdbcType=VARCHAR},
+      </if>
+      <if test="itemD != null" >
+        #{itemD,jdbcType=VARCHAR},
+      </if>
+      <if test="itemE != null" >
+        #{itemE,jdbcType=VARCHAR},
+      </if>
+      <if test="answer != null" >
+        #{answer,jdbcType=VARCHAR},
+      </if>
+      <if test="attachA != null" >
+        #{attachA,jdbcType=BLOB},
+      </if>
+      <if test="attachB != null" >
+        #{attachB,jdbcType=BLOB},
+      </if>
+      <if test="attachC != null" >
+        #{attachC,jdbcType=BLOB},
+      </if>
+      <if test="attachD != null" >
+        #{attachD,jdbcType=BLOB},
+      </if>
+      <if test="attachE != null" >
+        #{attachE,jdbcType=BLOB},
+      </if>
+      <if test="explanation != null" >
+        #{explanation,jdbcType=VARCHAR},
+      </if>
+      <if test="attachExplanation != null" >
+        #{attachExplanation,jdbcType=BLOB},
+      </if>
+      <if test="questionStatus != null" >
+        #{questionStatus,jdbcType=SMALLINT},
+      </if>
+      <if test="questionType != null" >
+        #{questionType,jdbcType=SMALLINT},
+      </if>
+      <if test="questionSetId != null" >
+        #{questionSetId,jdbcType=VARCHAR},
+      </if>
+      <if test="branchId != null" >
+        #{branchId,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="timestamp != null" >
+        #{timestamp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="grade != null" >
+        #{grade,jdbcType=INTEGER},
+      </if>
+      <if test="comment != null" >
+        #{comment,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.usst.entity.question.Question" >
+    update question
+    <set >
+      <if test="levelId != null" >
+        level_id = #{levelId,jdbcType=VARCHAR},
+      </if>
+      <if test="subjectId != null" >
+        subject_id = #{subjectId,jdbcType=VARCHAR},
+      </if>
+      <if test="examTpyeId != null" >
+        exam_tpye_id = #{examTpyeId,jdbcType=VARCHAR},
+      </if>
+      <if test="textbookId != null" >
+        textbook_id = #{textbookId,jdbcType=VARCHAR},
+      </if>
+      <if test="knowledgePointId != null" >
+        knowledge_point_id = #{knowledgePointId,jdbcType=VARCHAR},
+      </if>
+      <if test="semester != null" >
+        semester = #{semester,jdbcType=SMALLINT},
+      </if>
+      <if test="module != null" >
+        module = #{module,jdbcType=SMALLINT},
+      </if>
+      <if test="chapter != null" >
+        chapter = #{chapter,jdbcType=SMALLINT},
+      </if>
+      <if test="unit != null" >
+        unit = #{unit,jdbcType=SMALLINT},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="attachDescription != null" >
+        attach_description = #{attachDescription,jdbcType=BLOB},
+      </if>
+      <if test="itemA != null" >
+        item_a = #{itemA,jdbcType=VARCHAR},
+      </if>
+      <if test="itemB != null" >
+        item_b = #{itemB,jdbcType=VARCHAR},
+      </if>
+      <if test="itemC != null" >
+        item_c = #{itemC,jdbcType=VARCHAR},
+      </if>
+      <if test="itemD != null" >
+        item_d = #{itemD,jdbcType=VARCHAR},
+      </if>
+      <if test="itemE != null" >
+        item_e = #{itemE,jdbcType=VARCHAR},
+      </if>
+      <if test="answer != null" >
+        answer = #{answer,jdbcType=VARCHAR},
+      </if>
+      <if test="attachA != null" >
+        attach_a = #{attachA,jdbcType=BLOB},
+      </if>
+      <if test="attachB != null" >
+        attach_b = #{attachB,jdbcType=BLOB},
+      </if>
+      <if test="attachC != null" >
+        attach_c = #{attachC,jdbcType=BLOB},
+      </if>
+      <if test="attachD != null" >
+        attach_d = #{attachD,jdbcType=BLOB},
+      </if>
+      <if test="attachE != null" >
+        attach_e = #{attachE,jdbcType=BLOB},
+      </if>
+      <if test="explanation != null" >
+        explanation = #{explanation,jdbcType=VARCHAR},
+      </if>
+      <if test="attachExplanation != null" >
+        attach_explanation = #{attachExplanation,jdbcType=BLOB},
+      </if>
+      <if test="questionStatus != null" >
+        question_status = #{questionStatus,jdbcType=SMALLINT},
+      </if>
+      <if test="questionType != null" >
+        question_type = #{questionType,jdbcType=SMALLINT},
+      </if>
+      <if test="questionSetId != null" >
+        question_set_id = #{questionSetId,jdbcType=VARCHAR},
+      </if>
+      <if test="branchId != null" >
+        branch_id = #{branchId,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="timestamp != null" >
+        timestamp = #{timestamp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="grade != null" >
+        grade = #{grade,jdbcType=INTEGER},
+      </if>
+      <if test="comment != null" >
+        comment = #{comment,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where question_id = #{questionId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.usst.entity.question.Question" >
+    update question
+    set level_id = #{levelId,jdbcType=VARCHAR},
+      subject_id = #{subjectId,jdbcType=VARCHAR},
+      exam_tpye_id = #{examTpyeId,jdbcType=VARCHAR},
+      textbook_id = #{textbookId,jdbcType=VARCHAR},
+      knowledge_point_id = #{knowledgePointId,jdbcType=VARCHAR},
+      semester = #{semester,jdbcType=SMALLINT},
+      module = #{module,jdbcType=SMALLINT},
+      chapter = #{chapter,jdbcType=SMALLINT},
+      unit = #{unit,jdbcType=SMALLINT},
+      description = #{description,jdbcType=VARCHAR},
+      attach_description = #{attachDescription,jdbcType=BLOB},
+      item_a = #{itemA,jdbcType=VARCHAR},
+      item_b = #{itemB,jdbcType=VARCHAR},
+      item_c = #{itemC,jdbcType=VARCHAR},
+      item_d = #{itemD,jdbcType=VARCHAR},
+      item_e = #{itemE,jdbcType=VARCHAR},
+      answer = #{answer,jdbcType=VARCHAR},
+      attach_a = #{attachA,jdbcType=BLOB},
+      attach_b = #{attachB,jdbcType=BLOB},
+      attach_c = #{attachC,jdbcType=BLOB},
+      attach_d = #{attachD,jdbcType=BLOB},
+      attach_e = #{attachE,jdbcType=BLOB},
+      explanation = #{explanation,jdbcType=VARCHAR},
+      attach_explanation = #{attachExplanation,jdbcType=BLOB},
+      question_status = #{questionStatus,jdbcType=SMALLINT},
+      question_type = #{questionType,jdbcType=SMALLINT},
+      question_set_id = #{questionSetId,jdbcType=VARCHAR},
+      branch_id = #{branchId,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=VARCHAR},
+      timestamp = #{timestamp,jdbcType=TIMESTAMP},
+      grade = #{grade,jdbcType=INTEGER},
+      comment = #{comment,jdbcType=VARCHAR}
+    where question_id = #{questionId,jdbcType=VARCHAR}
+  </update>
+</mapper>

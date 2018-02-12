@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.usst.dao.question.KnowledgePointMapper" >
+  <resultMap id="BaseResultMap" type="com.usst.entity.question.KnowledgePoint" >
+    <id column="knowledge_point_id" property="knowledgePointId" jdbcType="VARCHAR" />
+    <result column="knowledge_point_name" property="knowledgePointName" jdbcType="VARCHAR" />
+    <result column="tag_cluster_id" property="tagClusterId" jdbcType="VARCHAR" />
+    <result column="level_id" property="levelId" jdbcType="VARCHAR" />
+    <result column="subject_id" property="subjectId" jdbcType="VARCHAR" />
+    <result column="last_update" property="lastUpdate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    knowledge_point_id, knowledge_point_name, tag_cluster_id, level_id, subject_id, last_update
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from knowledge_point
+    where knowledge_point_id = #{knowledgePointId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from knowledge_point
+    where knowledge_point_id = #{knowledgePointId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.usst.entity.question.KnowledgePoint" >
+    insert into knowledge_point (knowledge_point_id, knowledge_point_name, 
+      tag_cluster_id, level_id, subject_id, 
+      last_update)
+    values (#{knowledgePointId,jdbcType=VARCHAR}, #{knowledgePointName,jdbcType=VARCHAR}, 
+      #{tagClusterId,jdbcType=VARCHAR}, #{levelId,jdbcType=VARCHAR}, #{subjectId,jdbcType=VARCHAR}, 
+      #{lastUpdate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.usst.entity.question.KnowledgePoint" >
+    insert into knowledge_point
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="knowledgePointId != null" >
+        knowledge_point_id,
+      </if>
+      <if test="knowledgePointName != null" >
+        knowledge_point_name,
+      </if>
+      <if test="tagClusterId != null" >
+        tag_cluster_id,
+      </if>
+      <if test="levelId != null" >
+        level_id,
+      </if>
+      <if test="subjectId != null" >
+        subject_id,
+      </if>
+      <if test="lastUpdate != null" >
+        last_update,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="knowledgePointId != null" >
+        #{knowledgePointId,jdbcType=VARCHAR},
+      </if>
+      <if test="knowledgePointName != null" >
+        #{knowledgePointName,jdbcType=VARCHAR},
+      </if>
+      <if test="tagClusterId != null" >
+        #{tagClusterId,jdbcType=VARCHAR},
+      </if>
+      <if test="levelId != null" >
+        #{levelId,jdbcType=VARCHAR},
+      </if>
+      <if test="subjectId != null" >
+        #{subjectId,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdate != null" >
+        #{lastUpdate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.usst.entity.question.KnowledgePoint" >
+    update knowledge_point
+    <set >
+      <if test="knowledgePointName != null" >
+        knowledge_point_name = #{knowledgePointName,jdbcType=VARCHAR},
+      </if>
+      <if test="tagClusterId != null" >
+        tag_cluster_id = #{tagClusterId,jdbcType=VARCHAR},
+      </if>
+      <if test="levelId != null" >
+        level_id = #{levelId,jdbcType=VARCHAR},
+      </if>
+      <if test="subjectId != null" >
+        subject_id = #{subjectId,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdate != null" >
+        last_update = #{lastUpdate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where knowledge_point_id = #{knowledgePointId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.usst.entity.question.KnowledgePoint" >
+    update knowledge_point
+    set knowledge_point_name = #{knowledgePointName,jdbcType=VARCHAR},
+      tag_cluster_id = #{tagClusterId,jdbcType=VARCHAR},
+      level_id = #{levelId,jdbcType=VARCHAR},
+      subject_id = #{subjectId,jdbcType=VARCHAR},
+      last_update = #{lastUpdate,jdbcType=TIMESTAMP}
+    where knowledge_point_id = #{knowledgePointId,jdbcType=VARCHAR}
+  </update>
+</mapper>

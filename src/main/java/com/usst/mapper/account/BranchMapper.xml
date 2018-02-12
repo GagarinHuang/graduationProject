@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.usst.dao.account.BranchMapper" >
+  <resultMap id="BaseResultMap" type="com.usst.entity.account.Branch" >
+    <id column="branch_id" property="branchId" jdbcType="VARCHAR" />
+    <result column="branch_name" property="branchName" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="BIT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    branch_id, branch_name, status
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from branch
+    where branch_id = #{branchId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from branch
+    where branch_id = #{branchId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.usst.entity.account.Branch" >
+    insert into branch (branch_id, branch_name, status
+      )
+    values (#{branchId,jdbcType=VARCHAR}, #{branchName,jdbcType=VARCHAR}, #{status,jdbcType=BIT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.usst.entity.account.Branch" >
+    insert into branch
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="branchId != null" >
+        branch_id,
+      </if>
+      <if test="branchName != null" >
+        branch_name,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="branchId != null" >
+        #{branchId,jdbcType=VARCHAR},
+      </if>
+      <if test="branchName != null" >
+        #{branchName,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.usst.entity.account.Branch" >
+    update branch
+    <set >
+      <if test="branchName != null" >
+        branch_name = #{branchName,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=BIT},
+      </if>
+    </set>
+    where branch_id = #{branchId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.usst.entity.account.Branch" >
+    update branch
+    set branch_name = #{branchName,jdbcType=VARCHAR},
+      status = #{status,jdbcType=BIT}
+    where branch_id = #{branchId,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -49,13 +49,13 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand logo" href="index.jsp"><img src="../res/images/logo.png" width="80"></a>
+                    <a class="navbar-brand logo" href="<%=request.getContextPath()%>"><img src="../res/images/logo.png" width="80"></a>
                 </div>
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="index.jsp"> Home</a></li>
+                        <li><a href="<%=request.getContextPath()%>"> Home</a></li>
                         <li><a href=""> TEST</a></li>
                         <li><a href="../page/login_stu.jsp"> LOG IN</a></li>
                         <li><a href=""> SIGN UP</a></li>

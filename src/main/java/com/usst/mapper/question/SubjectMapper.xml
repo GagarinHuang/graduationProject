@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.usst.dao.question.SubjectMapper" >
+  <resultMap id="BaseResultMap" type="com.usst.entity.question.Subject" >
+    <id column="subject_id" property="subjectId" jdbcType="VARCHAR" />
+    <result column="subject_name" property="subjectName" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="subjList" type="com.usst.entity.question.Subject" >
+    <result column="subject_id" property="subjectId" jdbcType="VARCHAR" />
+    <result column="subject_name" property="subjectName" jdbcType="VARCHAR" />
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    subject_id, subject_name
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from subject
+    where subject_id = #{subjectId,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAllRecords" resultMap="subjList">
+    select
+    <include refid="Base_Column_List" />
+    from subject
+  </select>
+
+<delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from subject
+    where subject_id = #{subjectId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.usst.entity.question.Subject" >
+    insert into subject (subject_id, subject_name)
+    values (#{subjectId,jdbcType=VARCHAR}, #{subjectName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.usst.entity.question.Subject" >
+    insert into subject
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="subjectId != null" >
+        subject_id,
+      </if>
+      <if test="subjectName != null" >
+        subject_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="subjectId != null" >
+        #{subjectId,jdbcType=VARCHAR},
+      </if>
+      <if test="subjectName != null" >
+        #{subjectName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.usst.entity.question.Subject" >
+    update subject
+    <set >
+      <if test="subjectName != null" >
+        subject_name = #{subjectName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where subject_id = #{subjectId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.usst.entity.question.Subject" >
+    update subject
+    set subject_name = #{subjectName,jdbcType=VARCHAR}
+    where subject_id = #{subjectId,jdbcType=VARCHAR}
+  </update>
+</mapper>

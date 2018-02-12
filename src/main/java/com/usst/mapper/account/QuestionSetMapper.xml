@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.usst.dao.account.QuestionSetMapper" >
+  <resultMap id="BaseResultMap" type="com.usst.entity.account.QuestionSet" >
+    <id column="question_set_id" property="questionSetId" jdbcType="VARCHAR" />
+    <id column="question_id" property="questionId" jdbcType="VARCHAR" />
+    <result column="question_mark" property="questionMark" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    question_set_id, question_id, question_mark
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.usst.entity.account.QuestionSetKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from question_set
+    where question_set_id = #{questionSetId,jdbcType=VARCHAR}
+      and question_id = #{questionId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.usst.entity.account.QuestionSetKey" >
+    delete from question_set
+    where question_set_id = #{questionSetId,jdbcType=VARCHAR}
+      and question_id = #{questionId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.usst.entity.account.QuestionSet" >
+    insert into question_set (question_set_id, question_id, question_mark
+      )
+    values (#{questionSetId,jdbcType=VARCHAR}, #{questionId,jdbcType=VARCHAR}, #{questionMark,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.usst.entity.account.QuestionSet" >
+    insert into question_set
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="questionSetId != null" >
+        question_set_id,
+      </if>
+      <if test="questionId != null" >
+        question_id,
+      </if>
+      <if test="questionMark != null" >
+        question_mark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="questionSetId != null" >
+        #{questionSetId,jdbcType=VARCHAR},
+      </if>
+      <if test="questionId != null" >
+        #{questionId,jdbcType=VARCHAR},
+      </if>
+      <if test="questionMark != null" >
+        #{questionMark,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.usst.entity.account.QuestionSet" >
+    update question_set
+    <set >
+      <if test="questionMark != null" >
+        question_mark = #{questionMark,jdbcType=INTEGER},
+      </if>
+    </set>
+    where question_set_id = #{questionSetId,jdbcType=VARCHAR}
+      and question_id = #{questionId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.usst.entity.account.QuestionSet" >
+    update question_set
+    set question_mark = #{questionMark,jdbcType=INTEGER}
+    where question_set_id = #{questionSetId,jdbcType=VARCHAR}
+      and question_id = #{questionId,jdbcType=VARCHAR}
+  </update>
+</mapper>

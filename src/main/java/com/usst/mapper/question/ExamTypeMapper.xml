@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.usst.dao.question.ExamTypeMapper" >
+  <resultMap id="BaseResultMap" type="com.usst.entity.question.ExamType" >
+    <id column="exam_type_id" property="examTypeId" jdbcType="VARCHAR" />
+    <result column="exam_type_name" property="examTypeName" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="etList" type="com.usst.entity.question.ExamType" >
+    <result column="exam_type_id" property="examTypeId" jdbcType="VARCHAR" />
+    <result column="exam_type_name" property="examTypeName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    exam_type_id, exam_type_name
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="etList" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from exam_tpye
+    where exam_type_id = #{examTypeId,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAllRecords" resultMap="etList">
+    select
+    <include refid="Base_Column_List" />
+    from exam_tpye
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from exam_tpye
+    where exam_type_id = #{examTypeId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.usst.entity.question.ExamType" >
+    insert into exam_tpye (exam_type_id, exam_type_name)
+    values (#{examTypeId,jdbcType=VARCHAR}, #{examTypeName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.usst.entity.question.ExamType" >
+    insert into exam_tpye
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="examTypeId != null" >
+        exam_type_id,
+      </if>
+      <if test="examTypeName != null" >
+        exam_type_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="examTypeId != null" >
+        #{examTypeId,jdbcType=VARCHAR},
+      </if>
+      <if test="examTypeName != null" >
+        #{examTypeName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.usst.entity.question.ExamType" >
+    update exam_tpye
+    <set >
+      <if test="examTypeName != null" >
+        exam_type_name = #{examTypeName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where exam_type_id = #{examTypeId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.usst.entity.question.ExamType" >
+    update exam_tpye
+    set exam_type_name = #{examTypeName,jdbcType=VARCHAR}
+    where exam_type_id = #{examTypeId,jdbcType=VARCHAR}
+  </update>
+</mapper>
