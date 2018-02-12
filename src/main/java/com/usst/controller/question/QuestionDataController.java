@@ -112,4 +112,12 @@ public class QuestionDataController {
 
     }
 
+
+    @RequestMapping
+    public ModelAndView getList(HttpSession session) {
+        ArrayList<Question> qList = questionService.getList(session);
+        session.setAttribute("questionList",qList);
+        return new ModelAndView("redirect:/paper/XXX.jsp");
+    }
+
 }

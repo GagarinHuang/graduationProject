@@ -137,6 +137,6 @@ public class QuestionBS implements IQuestion {
     public ArrayList<Question> getList(HttpSession session) {
         String userId = (String) session.getAttribute("userId");
         ArrayList<Question> qList = this.questionMapper.selectAllRecordsByUserId(userId);
-        return null;
+        return qList;
     }
 }
