@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal">
+    <data-source name="exammanagementsystem@localhost" uuid="4c1274e9-a51a-497b-a308-4bd88f388dc1">
+      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" />
+      <introspection-schemas>*:exammanagementsystem</introspection-schemas>
+    </data-source>
+  </component>
+</project>

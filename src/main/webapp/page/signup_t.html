@@ -50,23 +50,19 @@
     <div class="row">
         <!-- progressbar -->
         <ul id="progressbar">
-            <li class="active">Genearch Information</li>
-            <li>Student Information</li>
+            <li class="active">Account Information</li>
+            <li>Personal Information</li>
             <li>School Information</li>
         </ul>
         <div class="col-md-4 col-md-push-4">
-
             <form action="#" class="ls-form animate-box">
-
                 <fieldset>
                     <h2>Step 0ne</h2>
                     <div class="form-group">
-
                         <input type="text" class="form-control" id="usr_par" placeholder="Phone number/Email"
                                autocomplete="off">
                     </div>
                     <div class="form-group">
-
                         <input type="password" class="form-control" id="password1" placeholder="Password"
                                autocomplete="off">
                     </div>
@@ -74,24 +70,6 @@
 
                         <input type="password" class="form-control" id="password2" placeholder="Password Again"
                                autocomplete="off">
-                    </div>
-                    <div class="form-group">
-                        <div class="col-md-12 column">
-                            <div class="row clearfix">
-                                <div class="col-md-6 column">
-                                    <input type="text" class="form-control" id="genearch_name" placeholder="Name"
-                                           autocomplete="off">
-                                </div>
-                                <div class="col-md-6 column">
-                                    <select class="form-control">
-                                        <option selected="selected" disabled="">Realtion</option>
-                                        <option>Parents</option>
-                                        <option>Grand Parents</option>
-                                        <option>Others</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
                     </div>
 
                     <input type="button" style="float: right" value="Next" class="next btn btn-primary">
@@ -101,33 +79,26 @@
                 <fieldset>
                     <h2>Step Two</h2>
                     <div class="form-group">
-                        <input type="text" class="form-control" id="usr_stu" placeholder="Stendent Name"
+                        <input type="text" class="form-control" id="t_name" placeholder="Your Name"
                                autocomplete="off">
                     </div>
                     <div class="form-group">
-                        <label>Student Sex : </label>
-                        <label><input type="radio" id="1" name="sex"> <i class="fa fa-mars"> Boy </i></label>
-                        <label><input type="radio" id="0" name="sex"> <i class="fa fa-venus"> Girl </i></label>
+                        <label>Your Sex : </label>
+                        <label><input type="radio" id="1" name="sex"> <i class="fa fa-mars"> Man </i></label>
+                        <label><input type="radio" id="0" name="sex"> <i class="fa fa-venus"> Woman </i></label>
                     </div>
-
                     <div class="form-group">
-                        <label>Choose Birthday :</label>
+                        <label>Your Birthday :</label>
                         <label>
                             <div class="input-append date form_datetime">
-                                <input type="button" value="1990-01-01" readonly>
+                                <input type="button" value="1980-01-01" readonly>
                                 <span class="add-on"><i class="fa fa-calendar fa-2x"></i></span>
                             </div>
                         </label>
                     </div>
 
-                    <div class="form-group">
-                        <input type="text" class="form-control" id="stu_introd" placeholder="Student's introduction :"
-                               autocomplete="off">
-                    </div>
-
                     <input type="button" style="float: left" value="Previous" class="previous btn btn-danger btn-sm">
                     <input type="button" style="float: right" value="Next" class="next btn btn-primary">
-
 
                 </fieldset>
 
@@ -152,29 +123,12 @@
                             </div>
                         </form>
                     </div>
-                    <div class="form-group" style="text-align: match-parent">
-                        <label><h4>Grade : </h4></label>
-                        <label><select class="form-control">
-                            <option>One</option>
-                            <option>Two</option>
-                            <option>Three</option>
-                            <option>Four</option>
-                            <option>Five</option>
-                            <option>Six</option>
-                        </select>
-                        </label>
-                        <label><h4>Class : </h4></label>
-                        <label><select class="form-control">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                            <option>6</option>
-                            <option>7</option>
-                        </select>
-                        </label>
-                    </div>
+                    <select class="form-control">
+                        <option selected="selected" disabled="">Branch</option>
+                        <option>Chinese</option>
+                        <option>Math</option>
+                        <option>English</option>
+                    </select>
 
                     <input type="submit" style="float: left" value="Previous" class="previous btn btn-danger btn-sm">
                     <input type="submit" style="float: right" value="Go Now" class="btn btn-primary">
