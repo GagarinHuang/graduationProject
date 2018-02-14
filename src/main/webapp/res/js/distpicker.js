@@ -198,7 +198,7 @@
     placeholder: true,
     province: ' Province ',
     city: ' City ',
-    district: ' District '
+    district: ' School '
   };
 
   Distpicker.setDefaults = function (options) {
