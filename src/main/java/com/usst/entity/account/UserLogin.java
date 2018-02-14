@@ -11,6 +11,9 @@ public class UserLogin {
 
     private String eMail;
 
+    public UserLogin() {
+    }
+
     public String getUserId() {
         return userId;
     }

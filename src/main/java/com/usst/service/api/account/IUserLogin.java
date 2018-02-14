@@ -13,4 +13,6 @@ public interface IUserLogin {
     boolean login(String userId, String userPassword, HttpSession session);
 
     ArrayList<String> create(UserLogin userLogin);
+
+    UserLogin fetch(String userId);
 }

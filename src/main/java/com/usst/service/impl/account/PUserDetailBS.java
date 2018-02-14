@@ -11,9 +11,9 @@ import com.usst.service.api.account.ISUserDetail;
 import com.usst.service.api.account.IUserLogin;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
-import javax.transaction.Transactional;
 import java.util.ArrayList;
 
 @Service("PUserDetailService")
@@ -46,8 +46,8 @@ public class PUserDetailBS implements IPUserDetail {
         return  objList;
     }
 
-    @Transactional
     @Override
+    @Transactional
     public ArrayList<String> create(PUserDetail pUserDetail,UserLogin pUserLogin, SUserDetail sUserDetail) {
         PUserDetail initPUserDetail = new PUserDetail();
         this.pUserDetailBE.initialize(initPUserDetail);
@@ -56,28 +56,39 @@ public class PUserDetailBS implements IPUserDetail {
         ArrayList<String> msgList = this.pUserDetailBE.isValidForCreate(pUserDetail);
         Utilities.setCurrentDateAndTime(pUserDetail,new String[]{"createDate"},
                                         new String[]{"yyyy-MM-dd"});
-        if(msgList.isEmpty() ){
-            //创建家长账户
-            msgList.addAll(this.userLoginService.create(pUserLogin));
+        pUserDetail.setUserId(pUserLogin.getUserId());
+        pUserDetail.setMobilePhone(pUserLogin.getUserId());
+        try {
+            if(msgList.isEmpty() ){
+                //创建家长账户
+                msgList.addAll(this.userLoginService.create(pUserLogin));
 
-            int record = this.pUserDetailMapper.insert(pUserDetail);
-            if(record > 0){
-                //创建学生账户
-                UserLogin sUserLogin = new UserLogin();
-                sUserLogin.setUserId("S" + pUserDetail.getMobilePhone());
-                //处理下密码？6位生日
-                sUserLogin.setUserPassword(sUserDetail.getDateOfBirth());
-                msgList.addAll(this.userLoginService.create(sUserLogin));
+                int record = this.pUserDetailMapper.insert(pUserDetail);
+                if(record > 0){
+                    //创建学生账户
+                    UserLogin sUserLogin = new UserLogin();
+                    sUserLogin.setUserId("S" + pUserDetail.getMobilePhone());
+                    //处理下密码？6位生日
+                    sUserLogin.setUserPassword(sUserDetail.getDateOfBirth());
+                    msgList.addAll(this.userLoginService.create(sUserLogin));
 
-                //创建学生detail信息
-                sUserDetail.setUserId("S" + pUserDetail.getMobilePhone());
-                msgList.addAll(this.sUserDetailService.create(sUserDetail));
+                    //创建学生detail信息
+                    sUserDetail.setUserId("S" + pUserDetail.getMobilePhone());
+                    msgList.addAll(this.sUserDetailService.create(sUserDetail));
+                }
+            }
+            if(!msgList.isEmpty()) {
+                msgList.add("服务器创建家长账户信息错误");
+                throw new Exception();
             }
         }
-        if(!msgList.isEmpty()) {
-            msgList.add("服务器创建家长账户信息错误");
+        catch (Exception e){
+            e.printStackTrace();
+            msgList.add("服务器异常");
             throw new RuntimeException();
         }
-        return msgList;
+        finally {
+            return msgList;
+        }
     }
 }

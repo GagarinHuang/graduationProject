@@ -14,6 +14,7 @@ public class PUserDetailBE {
     }
 
     public void assignDefault(PUserDetail pUserDetail) {
+        pUserDetail.setActive(true);
         pUserDetail.setRoleId((short) 1);
     }
 

@@ -6,7 +6,7 @@
     <result column="user_password" property="userPassword" jdbcType="VARCHAR" />
     <result column="nick_name" property="nickName" jdbcType="VARCHAR" />
     <result column="mobile_phone" property="mobilePhone" jdbcType="VARCHAR" />
-    <result column="e-mail" property="eMail" jdbcType="VARCHAR" />
+    <result column="e_mail" property="eMail" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
     user_id, user_password, nick_name, mobile_phone, e_mail
@@ -23,7 +23,7 @@
   </delete>
   <insert id="insert" parameterType="com.usst.entity.account.UserLogin" >
     insert into user_login (user_id, user_password, nick_name, 
-      mobile_phone, e-mail)
+      mobile_phone, e_mail)
     values (#{userId,jdbcType=VARCHAR}, #{userPassword,jdbcType=VARCHAR}, #{nickName,jdbcType=VARCHAR}, 
       #{mobilePhone,jdbcType=VARCHAR}, #{eMail,jdbcType=VARCHAR})
   </insert>
@@ -43,7 +43,7 @@
         mobile_phone,
       </if>
       <if test="eMail != null" >
-        e-mail,
+        e_mail,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -77,7 +77,7 @@
         mobile_phone = #{mobilePhone,jdbcType=VARCHAR},
       </if>
       <if test="eMail != null" >
-        e-mail = #{eMail,jdbcType=VARCHAR},
+        e_mail = #{eMail,jdbcType=VARCHAR},
       </if>
     </set>
     where user_id = #{userId,jdbcType=VARCHAR}
@@ -87,7 +87,7 @@
     set user_password = #{userPassword,jdbcType=VARCHAR},
       nick_name = #{nickName,jdbcType=VARCHAR},
       mobile_phone = #{mobilePhone,jdbcType=VARCHAR},
-      e-mail = #{eMail,jdbcType=VARCHAR}
+      e_mail = #{eMail,jdbcType=VARCHAR}
     where user_id = #{userId,jdbcType=VARCHAR}
   </update>
 </mapper>

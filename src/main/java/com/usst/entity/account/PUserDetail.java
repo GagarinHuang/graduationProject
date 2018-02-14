@@ -35,6 +35,9 @@ public class PUserDetail {
 
     private Integer age;
 
+    public PUserDetail() {
+    }
+
     public String getUserId() {
         return userId;
     }

@@ -11,7 +11,7 @@
     <result column="affiliation_id" property="affiliationId" jdbcType="VARCHAR" />
     <result column="branch_id" property="branchId" jdbcType="VARCHAR" />
     <result column="mobile_phone" property="mobilePhone" jdbcType="VARCHAR" />
-    <result column="e-mail" property="eMail" jdbcType="VARCHAR" />
+    <result column="e_mail" property="eMail" jdbcType="VARCHAR" />
     <result column="create_date" property="createDate" jdbcType="VARCHAR" />
     <result column="last_update" property="lastUpdate" jdbcType="VARCHAR" />
     <result column="archive_id" property="archiveId" jdbcType="VARCHAR" />
@@ -22,7 +22,7 @@
   </resultMap>
   <sql id="Base_Column_List" >
     user_id, role_id, first_name, last_name, gender, date_of_birth, affiliation_id, branch_id, 
-    mobile_phone, e-mail, create_date, last_update, archive_id, active, parent_id, child_id, 
+    mobile_phone, e_mail, create_date, last_update, archive_id, active, parent_id, child_id,
     age
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
@@ -39,7 +39,7 @@
     insert into p_user_detail (user_id, role_id, first_name, 
       last_name, gender, date_of_birth, 
       affiliation_id, branch_id, mobile_phone, 
-      e-mail, create_date, last_update, 
+      e_mail, create_date, last_update,
       archive_id, active, parent_id, 
       child_id, age)
     values (#{userId,jdbcType=VARCHAR}, #{roleId,jdbcType=SMALLINT}, #{firstName,jdbcType=VARCHAR}, 
@@ -80,7 +80,7 @@
         mobile_phone,
       </if>
       <if test="eMail != null" >
-        e-mail,
+        e_mail,
       </if>
       <if test="createDate != null" >
         create_date,
@@ -186,7 +186,7 @@
         mobile_phone = #{mobilePhone,jdbcType=VARCHAR},
       </if>
       <if test="eMail != null" >
-        e-mail = #{eMail,jdbcType=VARCHAR},
+        e_mail = #{eMail,jdbcType=VARCHAR},
       </if>
       <if test="createDate != null" >
         create_date = #{createDate,jdbcType=VARCHAR},
@@ -222,7 +222,7 @@
       affiliation_id = #{affiliationId,jdbcType=VARCHAR},
       branch_id = #{branchId,jdbcType=VARCHAR},
       mobile_phone = #{mobilePhone,jdbcType=VARCHAR},
-      e-mail = #{eMail,jdbcType=VARCHAR},
+      e_mail = #{eMail,jdbcType=VARCHAR},
       create_date = #{createDate,jdbcType=VARCHAR},
       last_update = #{lastUpdate,jdbcType=VARCHAR},
       archive_id = #{archiveId,jdbcType=VARCHAR},

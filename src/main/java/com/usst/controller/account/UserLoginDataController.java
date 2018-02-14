@@ -41,5 +41,26 @@ public class UserLoginDataController {
         return new ModelAndView("redirect:/");
     }
 
+    @RequestMapping(value = "/handleFieldChange", method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String,String> handleFieldChange(
+            @RequestParam(value = "fieldName",required = false) String fieldName,
+            @RequestParam(value = "fieldValue",required = false) String fieldValue){
+        System.out.println("handleFieldChange(" + fieldName + ","+ fieldValue +")");
+        Map<String, String> rmap = new HashMap<String, String>();
+        if(fieldName.equals("userId")){
+            UserLogin userLogin = this.userLoginService.fetch(fieldValue);
+            if(userLogin != null){
+                rmap.put("msg","用户已存在");
+            }
+            else {
+                rmap.put("msg","");
+            }
+        }
+        else {
+            rmap.put("msg","");
+        }
+        return rmap;
+    }
 
 }

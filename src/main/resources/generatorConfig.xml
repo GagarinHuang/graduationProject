@@ -66,7 +66,7 @@
             <!--<columnOverride column="attach_explanation" javaType="java.lang.byte[]" jdbcType="LONGBLOB" />-->
         <!--</table>-->
         <!-- 指定数据库表 -->
-        <table schema="exammanagementsystem" tableName="question_set"
+        <table schema="exammanagementsystem" tableName="municipality"
                enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="false" ></table>

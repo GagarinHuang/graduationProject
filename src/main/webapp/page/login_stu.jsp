@@ -24,7 +24,7 @@
     <div class="row">
         <div class="col-md-4 col-md-push-8" ng-app="loginApp" ng-controller="loginCtrl" >
             <!--angular animate效果没有-->
-            <form name="userLogin" action="#"
+            <form action="#"
                   class="ls-form animate-box" data-animate-effect="fadeInRight">
                 <h2>Sign In</h2>
                 <div class="form-group">
@@ -34,7 +34,7 @@
                            <%--title="输入的字符为8-16位"--%>
                            maxlength="30"
                            <%--pattern="[0-9A-Za-z]{8,16}"--%>
-                           ng-model="userId" id="userId"
+                           ng-model="userLogin.userId" id="userId"
                            placeholder="UserId"
                            required>
                 </div>
@@ -43,7 +43,7 @@
                     <input type="password" class="form-control" id="password"
                            error-message
                            maxlength="30"
-                           ng-model="userPassword"
+                           ng-model="userLogin.userPassword"
                            placeholder="Password"
                            required>
                 </div>

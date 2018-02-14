@@ -72,7 +72,7 @@
                 <h3>You can bala bala bala here</h3>
                 <h3>Still bala bala bala bala bala bala</h3>
                 <br>
-                <a href="login.jsp" class="btn btn-primary my-btn">Start Now</a>
+                <a href="../page/login.html" class="btn btn-primary my-btn">Start Now</a>
                 <a href="" class="btn btn-primary my-btn2">Learn More</a>
             </div>
         </div>

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.usst.dao.account.MunicipalityMapper" >
+  <resultMap id="BaseResultMap" type="com.usst.entity.account.Municipality" >
+    <id column="municipality_id" property="municipalityId" jdbcType="VARCHAR" />
+    <result column="municipality_name" property="municipalityName" jdbcType="VARCHAR" />
+    <result column="province_id" property="provinceId" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="municList" type="com.usst.entity.account.Municipality" >
+    <result column="municipality_id" property="municipalityId" jdbcType="VARCHAR" />
+    <result column="municipality_name" property="municipalityName" jdbcType="VARCHAR" />
+    <result column="province_id" property="provinceId" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    municipality_id, municipality_name, province_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from municipality
+    where municipality_id = #{municipalityId,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAllRecords" resultMap="municList">
+    select
+    <include refid="Base_Column_List" />
+    from municipality
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from municipality
+    where municipality_id = #{municipalityId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.usst.entity.account.Municipality" >
+    insert into municipality (municipality_id, municipality_name, 
+      province_id)
+    values (#{municipalityId,jdbcType=VARCHAR}, #{municipalityName,jdbcType=VARCHAR}, 
+      #{provinceId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.usst.entity.account.Municipality" >
+    insert into municipality
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="municipalityId != null" >
+        municipality_id,
+      </if>
+      <if test="municipalityName != null" >
+        municipality_name,
+      </if>
+      <if test="provinceId != null" >
+        province_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="municipalityId != null" >
+        #{municipalityId,jdbcType=VARCHAR},
+      </if>
+      <if test="municipalityName != null" >
+        #{municipalityName,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceId != null" >
+        #{provinceId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.usst.entity.account.Municipality" >
+    update municipality
+    <set >
+      <if test="municipalityName != null" >
+        municipality_name = #{municipalityName,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceId != null" >
+        province_id = #{provinceId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where municipality_id = #{municipalityId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.usst.entity.account.Municipality" >
+    update municipality
+    set municipality_name = #{municipalityName,jdbcType=VARCHAR},
+      province_id = #{provinceId,jdbcType=VARCHAR}
+    where municipality_id = #{municipalityId,jdbcType=VARCHAR}
+  </update>
+</mapper>

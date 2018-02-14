@@ -27,6 +27,9 @@ public class SUserDetail {
 
     private String archiveId;
 
+    public SUserDetail() {
+    }
+
     /*
     * 0:未审核
     * ...to be done

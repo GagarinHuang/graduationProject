@@ -48,4 +48,10 @@ public class UserLoginBS implements IUserLogin {
         return msgList;
     }
 
+    @Override
+    public UserLogin fetch(String userId) {
+        UserLogin userLogin = this.userLoginMapper.selectByPrimaryKey(userId);
+        return userLogin;
+    }
+
 }

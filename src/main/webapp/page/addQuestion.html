@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Question</title>
+
+    <!-- CSS -->
+    <link href="../res/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<!--引用固定导航栏等 -->
+<div class="container">
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            <div class="col-md-2 column">
+                <div class="form-group">
+                    <label for="name">学科</label>
+                    <select class="form-control">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-1 column">
+                <div class="form-group">
+                    <label for="name">单元</label>
+                    <select class="form-control">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-1 column">
+                <div class="form-group">
+                    <label for="name">章节</label>
+                    <select class="form-control">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="col-md-2 column">
+                <div class="form-group">
+                    <label for="name">年级</label>
+                    <select class="form-control">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-2 column">
+                <div class="form-group">
+                    <label for="name">学期</label>
+                    <select class="form-control">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-2 column">
+                <div class="form-group">
+                    <label for="name">考试类型</label>
+                    <select class="form-control">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="row clearfix">
+                <div class="col-md-12 column">
+                    <div class="btn-group">
+                        <button class="btn btn-default" type="button">
+                            单选题
+                        </button>
+                        <button class="btn btn-default" type="button">
+                            多选题
+                        </button>
+                        <button class="btn btn-default" type="button">
+                            More
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="row clearfix">
+                <div class="col-md-12 column">
+                    <textarea rows="3" cols="50" id="description"
+                              placeholder="题目" /></textarea>
+                </div>
+            </div>
+            <div class="row clearfix">
+                <div class="col-md-4 column">
+                    <span>题目附图</span>
+                    <input type="file" id="attachDescription" value="上传图片附件"/>
+                </div>
+                <div class="col-md-8 column">
+                    <!--预览图片-->
+                    <img alt="140x140" src="http://ibootstrap-file.b0.upaiyun.com/lorempixel.com/140/140/default.jpg" />
+                    <!--预览图片-->
+                    <span>题目图片预览</span>
+                </div>
+            </div>
+            <div class="row clearfix">
+                <div class="col-md-4 column">
+                    <input type="button" value="+" class="btn btn-primary"/>
+                    <span>选项</span>
+                    <!--text和file二合一input控件？-->
+                    <input type="file" value="上传图片附件"/>
+                </div>
+                <div class="col-md-8 column">
+                    <!--预览图片-->
+                    <img alt="140x140" src="http://ibootstrap-file.b0.upaiyun.com/lorempixel.com/140/140/default.jpg" />
+                    <!--预览图片-->
+                    <span>选项图片预览</span>
+                </div>
+            </div>
+            <div class="row clearfix">
+                <!--根据选项个数显示相应答案选项个数-->
+                <span>正确答案</span>
+                <input type="radio" name="key" checked>A
+                <input type="radio" name="key" >B
+                <input type="radio" name="key" >C
+                <input type="radio" name="key" >D
+                <input type="radio" name="key" >E
+            </div>
+            <div class="row clearfix">
+                <div class="col-md-12 column">
+                    <textarea rows="3" cols="50" id="explanation"
+                              placeholder="题目解析" /></textarea>
+                </div>
+            </div>
+            <div class="row clearfix">
+                <div class="col-md-4 column">
+                    <span>题目解析附图</span>
+                    <input type="file" id="attachExplanation" value="上传图片附件"/>
+                </div>
+                <div class="col-md-8 column">
+                    <!--预览图片-->
+                    <img alt="140x140" src="http://ibootstrap-file.b0.upaiyun.com/lorempixel.com/140/140/default.jpg" />
+                    <!--预览图片-->
+                    <span>题目图片预览</span>
+                </div>
+            </div>
+            <div class="col-md-12 column">
+                <div class="col-md-5 column">
+                    <div class="form-group">
+                        <label for="name">加入试卷集</label>
+                        <select class="form-control">
+                            <option>初一第二学期期末数学A卷</option>
+                            <option>初二第三学期期末数学B卷</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-12 column">
+                    <!--根据状态disable button-->
+                    <input type="button" value="保存" class="btn btn-danger">
+                    <input type="button" value="保存并提交" class="btn btn-primary">
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- jQuery  -->
+<script src="../res/js/jquery.min.js"></script>
+<!-- JS -->
+<script src="../res/js/bootstrap.min.js"></script>
+
+</body>
+</html>
