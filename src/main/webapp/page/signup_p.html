@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <!--[if IE]>
+    <meta http-equiv="x-ua-compatible" content="IE=9"/><![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>MAPS|A TEST ONLINE WEBSITE</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="../res/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../res/css/bootstrap-datetimepicker.css">
+    <link rel="stylesheet" href="../res/css/animate.min.css">
+    <link rel="stylesheet" href="../res/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../res/css/style_signup.css">
+    <link rel="stylesheet" href="../res/css/style.css">
+</head>
+
+<body>
+<header class="mc-navbar">
+    <nav class="navbar navbar-default navbar-fixed-top clearfix" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                        data-target="#sept-main-nav">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#"><img src="../res/images/logo.png" alt="" class="img-responsive"></a>
+            </div>
+
+            <div class="collapse navbar-collapse main-nav" id="sept-main-nav">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="active"><a href="/page/index.html">Home</a></li>
+                    <li><a href="#">Test</a></li>
+                    <li><a href="#">Student</a></li>
+                    <li><a href="#">Teacher</a></li>
+                    <li><a href="#">Genearch</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="/page/login.html">Log in</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+<div class="container">
+
+    <div class="row">
+        <!-- progressbar -->
+        <ul id="progressbar">
+            <li class="active">Genearch Information</li>
+            <li>Student Information</li>
+            <li>School Information</li>
+        </ul>
+        <div class="col-md-4 col-md-push-4" ng-app="signupApp" ng-controller="signupCtrl">
+
+            <form action="#" class="ls-form animate-box">
+
+                <fieldset>
+                    <h2>Step 0ne</h2>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="usr_par" ng-model="pUserLogin.userId"
+                               ng-change="onFieldChange([form1PostUrl],'userId',pUserLogin.userId,[msgFieldSelect1])"
+                               maxlength="13" placeholder="Phone number" autocomplete="off">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" id="password1" ng-model="pUserLogin.userPassword"
+                               maxlength="15" placeholder="Password" autocomplete="off">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" id="password2" ng-model="userPassword2"
+                               maxlength="15" placeholder="Password Again" autocomplete="off">
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-12 column">
+                            <div class="row clearfix">
+                                <div class="col-md-6 column">
+                                    <input type="text" class="form-control" id="genearch_name" ng-model="pUserDetail.firstName"
+                                           placeholder="Name" maxlength="8" autocomplete="off">
+                                </div>
+                                <div class="col-md-6 column">
+                                    <select class="form-control">
+                                        <option selected="selected" disabled="">Realtion</option>
+                                        <option selected="selected">Parents</option>
+                                        <option>Grand Parents</option>
+                                        <option>Others</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-12 column">
+                            <span ng-model="fieldChangeMsg1" style="color:red">{{fieldChangeMsg1}}</span>
+                        </div>
+
+                    </div>
+                    <input type="button" style="float: right" value="Next"
+                           ng-click="createUserLogin()" class="next btn btn-primary">
+
+                </fieldset>
+
+                <fieldset>
+                    <h2>Step Two</h2>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="usr_stu" placeholder="Student Name"
+                               ng-model="sUserDetail.firstName" maxlength="8" autocomplete="off">
+                    </div>
+                    <div class="form-group">
+                        <div>
+                            <label>Student Sex : </label>
+                            <input type="radio" name="sex" ng-checked="true" ng-model="sUserDetail.gender" ng-value="1"> <i class="fa fa-mars"> Boy </i>
+                            <input type="radio" name="sex" ng-model="sUserDetail.gender" ng-value="0"> <i class="fa fa-venus"> Girl </i>
+                            <span>{{sUserDetail.gender}}</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="input-append date form_datetime">
+                            <label>Choose Birthday :</label>
+                            <input type="button" value="1990-01-01" readonly id="dateOfBirth"
+                                   ng-model="dateOfBirth">
+                            <span class="add-on"><i class="fa fa-calendar fa-2x"></i></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="stu_introd" placeholder="Student's introduction :"
+                               maxlength="20" autocomplete="off">
+                    </div>
+                    <div>
+                        <span ng-model="fieldChangeMsg2" style="color:red">{{fieldChangeMsg2}}</span>
+                    </div>
+
+                    <input type="button" style="float: left" value="Previous" class="previous btn btn-danger btn-sm">
+                    <input type="button" style="float: right" value="Next"
+                           ng-click="createStudentInformation()" class="next btn btn-primary">
+
+
+                </fieldset>
+
+                <fieldset>
+                    <h2>Step Three</h2>
+                    <div class="form-group" data-toggle="distpicker">
+                        <div id="distpicker1">
+                            <div class="col-md-12 column">
+                                <select class="form-control" id="province"></select>
+                            </div>
+                            <div class="col-md-12 column">
+                                <select class="form-control" id="city"></select>
+                            </div>
+                            <div class="col-md-12 column">
+                                <select class="form-control" id="school"></select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-6 column">
+                            <div class="form-group">
+                                <label><h4>Grade : </h4></label>
+                                <select class="form-control" ng-model="gradeNo">
+                                    <option ng-selected="true" value="01">One</option>
+                                    <option value="02">Two</option>
+                                    <option value="03">Three</option>
+                                    <option value="04">Four</option>
+                                    <option value="05">Five</option>
+                                    <option value="06">Six</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6 column">
+                            <div class="form-group">
+                                <label><h4>Class : </h4></label>
+                                <select class="form-control" ng-model="classNo">
+                                    <option value="01" ng-selected="true">01</option>
+                                    <option value="02">02</option>
+                                    <option value="03">03</option>
+                                    <option value="04">04</option>
+                                    <option value="05">05</option>
+                                    <option value="06">06</option>
+                                    <option value="07">07</option>
+                                </select>
+                            </div>
+                            <input type="text" ng-show="false" id="branchId"
+                                   ng-value="[gradeNo]+[classNo]" ng-model="sUserDetail.branchId">
+                        </div>
+                    </div>
+                    <div>
+                        <span ng-model="fieldChangeMsg3" style="color:red">{{fieldChangeMsg3}}</span>
+                    </div>
+
+
+                    <input type="button" style="float: left" value="Previous" class="previous btn btn-danger btn-sm">
+                    <input type="button" style="float: right" value="Go Now"
+                           ng-click="signup()"  class="next btn btn-primary">
+
+                </fieldset>
+                <!--添加fieldset 以显示创建的初始学生账号和密码，目前以alert形式显示-->
+                <fieldset>
+                    <h4 style="text-align:center">Remember Student Account</h4>
+                    <br>
+                    <div class="form-group" style="text-align:center">
+                        <div>
+                            <label>Account : </label>
+                            <span ng-model="sAccount" >{{sAccount}}</span>
+                        </div>
+                    </div>
+                    <div class="form-group" style="text-align:center">
+                        <div>
+                            <label>Password : </label>
+                            <span ng-model="sPassword" >{{sPassword}}</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input type="button" value="Log in Now"
+                               onclick="window.location.href='/page/login.html';" class="btn btn-primary center-block">
+                    </div>
+
+                </fieldset>
+            </form>
+
+
+        </div>
+    </div>
+</div>
+
+
+<!-- js -->
+<script src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
+<script src="../res/js/signupController.js"></script>
+<script src="../res/js/jquery.min.js" type="text/javascript"></script>
+<script src="../res/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="../res/js/bootstrap-datetimepicker.js" type="text/javascript"></script>
+<script src="../res/js/jquery.easing.min.js" type="text/javascript"></script>
+<script src="../res/js/progressbar.js" type="text/javascript"></script>
+<script src="../res/js/distpicker.data.js"></script>
+<script src="../res/js/distpicker.js"></script>
+<script src="../res/js/UtilityFunction.js"></script>
+<script>
+    $(".form_datetime").datetimepicker({
+        format: "yyyy-mm-dd",
+        autoclose: true,
+        todayBtn: true,
+        todayHighlight: true,
+        showMeridian: true,
+        pickerPosition: "right",
+        startView: 4,
+        minView: 2,
+        keyboardNavigation: true
+    });
+    $(function () {
+
+        'use strict';
+
+        $('#distpicker1').distpicker({
+            autoSelect: false
+        });
+
+    });
+</script>
+
+
+</body>
+</html>
