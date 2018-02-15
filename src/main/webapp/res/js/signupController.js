@@ -103,6 +103,9 @@ app.controller('signupCtrl', function($scope, $http, utilService, $q) {
         animating = false;
         isProcossedByServer = true;
         $scope.fieldChangeMsg3 = "";
+        $scope.sUserDetail.dateOfBirth = $('#dateOfBirth').val();
+        $scope.sUserDetail.branchId = $('#branchId').val();
+        $scope.sUserDetail.affiliationId= $("#school").find("option:selected").attr("data-code");
         if(haveUnsolvedMsg != true){
             validForm3();
             if($scope.fieldChangeMsg3 == ""){
@@ -129,17 +132,21 @@ app.controller('signupCtrl', function($scope, $http, utilService, $q) {
                 }
                 promise().then(function (data) {
                     if(data.msgList.length == 0) {
-                        alert("学生账户为：" + data.sUserLogin.userId + "\n" + "初始密码为:" + data.sUserLogin.userPassword);
+                        $scope.sAccount  = data.sUserLogin.userId;
+                        $scope.sPassword = data.sUserLogin.userPassword;
                         isProcossedByServer = true;
-                        window.location.href = "/page/login.html";
                     }
                     else {
                         isProcossedByServer = false;
                         for(var i = 0;i<data.msgList.length;i++){
-                            alert(msgList[i]);
+                            //show error msg from server
+                            alert(data.msgList[i]);
                         }
                     }
                 });
+            }
+            else{
+                isProcossedByServer = false;
             }
         }
         else{
@@ -161,6 +168,9 @@ app.controller('signupCtrl', function($scope, $http, utilService, $q) {
             else if($('#password1').val() == "" || $('#password1').val() == null){
                 $scope.fieldChangeMsg1 = "密码不能为空";
             }
+            else if($('#password1').val().length <5 || $('#password2').val().length <5){
+                $scope.fieldChangeMsg1 = "密码最少为5位";
+            }
             else if($('#password1').val() != $('#password2').val()){
                 $scope.fieldChangeMsg1 = "两次密码不同";
             }
@@ -172,8 +182,9 @@ app.controller('signupCtrl', function($scope, $http, utilService, $q) {
     }
     function validForm3() {
         if($scope.fieldChangeMsg3 == "") {
-            if($('#schoolname').val() == "" || $('#schoolname').val() == null){
-                $scope.fieldChangeMsg3 = "学校名称不能为空";
+            var schoolName = $("#school").val();
+            if(schoolName == null || schoolName == ''|| schoolName == 'School') {
+                $scope.fieldChangeMsg3 = "请选择学生所在学校";
             }
         }
     }

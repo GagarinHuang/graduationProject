@@ -55,12 +55,10 @@ public class PUserDetailDataController {
         JSONObject jsonObj3 = JSONObject.fromObject(jsonObj.getJSONObject("sUserDetail"));
         SUserDetail sUserDetail = new SUserDetail();
         sUserDetail = (SUserDetail) JSONObject.toBean(jsonObj3, sUserDetail.getClass());
-        ArrayList<String> msgList = this.pUserDetailService.create(pUserDetail, pUserLogin, sUserDetail);
-        rmap.put("msgList",msgList);
         UserLogin sUserLogin = new UserLogin();
+        ArrayList<String> msgList = this.pUserDetailService.create(pUserDetail, pUserLogin, sUserDetail, sUserLogin);
+        rmap.put("msgList",msgList);
         if(msgList.isEmpty()){
-            sUserLogin.setUserId(sUserDetail.getUserId());
-            sUserLogin.setUserPassword(sUserDetail.getDateOfBirth());
             rmap.put("sUserLogin",sUserLogin);
         }
         return rmap;

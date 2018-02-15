@@ -48,7 +48,7 @@ public class PUserDetailBS implements IPUserDetail {
 
     @Override
     @Transactional
-    public ArrayList<String> create(PUserDetail pUserDetail,UserLogin pUserLogin, SUserDetail sUserDetail) {
+    public ArrayList<String> create(PUserDetail pUserDetail,UserLogin pUserLogin, SUserDetail sUserDetail,UserLogin sUserLogin) {
         PUserDetail initPUserDetail = new PUserDetail();
         this.pUserDetailBE.initialize(initPUserDetail);
         pUserDetail = (PUserDetail) Utilities.combineBeans(pUserDetail,"",initPUserDetail);
@@ -66,10 +66,9 @@ public class PUserDetailBS implements IPUserDetail {
                 int record = this.pUserDetailMapper.insert(pUserDetail);
                 if(record > 0){
                     //创建学生账户
-                    UserLogin sUserLogin = new UserLogin();
                     sUserLogin.setUserId("S" + pUserDetail.getMobilePhone());
                     //处理下密码？6位生日
-                    sUserLogin.setUserPassword(sUserDetail.getDateOfBirth());
+                    sUserLogin.setUserPassword(Utilities.getOrderIdByUUId("S",8));
                     msgList.addAll(this.userLoginService.create(sUserLogin));
 
                     //创建学生detail信息

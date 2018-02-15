@@ -9,5 +9,5 @@ import java.util.ArrayList;
 public interface IPUserDetail {
 
     public ArrayList<Object> initialize(PUserDetail pUserDetail);
-    public ArrayList<String> create(PUserDetail pUserDetail, UserLogin pUserLogin, SUserDetail sUserDetail);
+    public ArrayList<String> create(PUserDetail pUserDetail, UserLogin pUserLogin, SUserDetail sUserDetail, UserLogin sUserLogin);
 }

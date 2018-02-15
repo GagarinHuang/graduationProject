@@ -33,11 +33,11 @@
 
             <div class="collapse navbar-collapse main-nav" id="sept-main-nav">
                 <ul class="nav navbar-nav navbar-right">
-                    <li class="active"><a href="#home">Home</a></li>
+                    <li class="active"><a href="/page/index.html">Home</a></li>
                     <li><a href="#">Test</a></li>
                     <li><a href="#">Student</a></li>
                     <li><a href="#">Teacher</a></li>
-                    <li><a href="#">Generacch</a></li>
+                    <li><a href="#">Genearch</a></li>
                     <li><a href="#">About</a></li>
                     <li><a href="/page/login.html">Log in</a></li>
                 </ul>
@@ -61,32 +61,29 @@
                 <fieldset>
                     <h2>Step 0ne</h2>
                     <div class="form-group">
-
                         <input type="text" class="form-control" id="usr_par" ng-model="pUserLogin.userId"
                                ng-change="onFieldChange([form1PostUrl],'userId',pUserLogin.userId,[msgFieldSelect1])"
-                               placeholder="Phone number/Email" autocomplete="off">
+                               maxlength="13" placeholder="Phone number" autocomplete="off">
                     </div>
                     <div class="form-group">
-
                         <input type="password" class="form-control" id="password1" ng-model="pUserLogin.userPassword"
-                               placeholder="Password" autocomplete="off">
+                               maxlength="15" placeholder="Password" autocomplete="off">
                     </div>
                     <div class="form-group">
-
                         <input type="password" class="form-control" id="password2" ng-model="userPassword2"
-                               placeholder="Password Again" autocomplete="off">
+                               maxlength="15" placeholder="Password Again" autocomplete="off">
                     </div>
                     <div class="form-group">
                         <div class="col-md-12 column">
                             <div class="row clearfix">
                                 <div class="col-md-6 column">
                                     <input type="text" class="form-control" id="genearch_name" ng-model="pUserDetail.firstName"
-                                           placeholder="Name" autocomplete="off">
+                                           placeholder="Name" maxlength="8" autocomplete="off">
                                 </div>
                                 <div class="col-md-6 column">
                                     <select class="form-control">
                                         <option selected="selected" disabled="">Realtion</option>
-                                        <option>Parents</option>
+                                        <option selected="selected">Parents</option>
                                         <option>Grand Parents</option>
                                         <option>Others</option>
                                     </select>
@@ -94,9 +91,11 @@
                             </div>
                         </div>
                     </div>
+                    <div class="form-group">
+                        <div class="col-md-12 column">
+                            <span ng-model="fieldChangeMsg1" style="color:red">{{fieldChangeMsg1}}</span>
+                        </div>
 
-                    <div>
-                        <span ng-model="fieldChangeMsg1" style="color:red">{{fieldChangeMsg1}}</span>
                     </div>
                     <input type="button" style="float: right" value="Next"
                            ng-click="createUserLogin()" class="next btn btn-primary">
@@ -107,27 +106,29 @@
                     <h2>Step Two</h2>
                     <div class="form-group">
                         <input type="text" class="form-control" id="usr_stu" placeholder="Student Name"
-                               ng-model="sUserDetail.firstName" autocomplete="off">
+                               ng-model="sUserDetail.firstName" maxlength="8" autocomplete="off">
                     </div>
                     <div class="form-group">
-                        <label>Student Sex : </label>
-                        <label><input type="radio" id="1" name="sex" checked ng-model="sUserDetail.gender"> <i class="fa fa-mars"> Boy </i></label>
-                        <label><input type="radio" id="0" name="sex"> <i class="fa fa-venus"> Girl </i></label>
+                        <div>
+                            <label>Student Sex : </label>
+                            <input type="radio" name="sex" ng-checked="true" ng-model="sUserDetail.gender" ng-value="1"> <i class="fa fa-mars"> Boy </i>
+                            <input type="radio" name="sex" ng-model="sUserDetail.gender" ng-value="0"> <i class="fa fa-venus"> Girl </i>
+                            <span>{{sUserDetail.gender}}</span>
+                        </div>
                     </div>
 
                     <div class="form-group">
-                        <label>Choose Birthday :</label>
-                        <label>
-                            <div class="input-append date form_datetime">
-                                <input type="button" value="1990-01-01" readonly ng-model="sUserDetail.dateOfBirth">
-                                <span class="add-on"><i class="fa fa-calendar fa-2x"></i></span>
-                            </div>
-                        </label>
+                        <div class="input-append date form_datetime">
+                            <label>Choose Birthday :</label>
+                            <input type="button" value="1990-01-01" readonly id="dateOfBirth"
+                                   ng-model="dateOfBirth">
+                            <span class="add-on"><i class="fa fa-calendar fa-2x"></i></span>
+                        </div>
                     </div>
 
                     <div class="form-group">
                         <input type="text" class="form-control" id="stu_introd" placeholder="Student's introduction :"
-                               autocomplete="off">
+                               maxlength="20" autocomplete="off">
                     </div>
                     <div>
                         <span ng-model="fieldChangeMsg2" style="color:red">{{fieldChangeMsg2}}</span>
@@ -142,55 +143,82 @@
 
                 <fieldset>
                     <h2>Step Three</h2>
-                    <div class="form-group">
-                        <form class="form-inline">
-                            <div data-toggle="distpicker">
-                                <form class="form-inline">
-                                    <div id="distpicker1">
-                                        <div class="form-group">
-                                            <select class="form-control" id="province"></select>
-                                        </div>
-                                        <div class="form-group">
-                                            <select class="form-control" id="city"></select>
-                                        </div>
-                                        <div class="form-group">
-                                            <select class="form-control" id="school"></select>
-                                        </div>
-                                    </div>
-                                </form>
+                    <div class="form-group" data-toggle="distpicker">
+                        <div id="distpicker1">
+                            <div class="col-md-12 column">
+                                <select class="form-control" id="province"></select>
                             </div>
-                        </form>
+                            <div class="col-md-12 column">
+                                <select class="form-control" id="city"></select>
+                            </div>
+                            <div class="col-md-12 column">
+                                <select class="form-control" id="school"></select>
+                            </div>
+                        </div>
                     </div>
-                    <div class="form-group" style="text-align: match-parent">
-                        <label><h4>Grade : </h4></label>
-                        <label><select class="form-control">
-                            <option>One</option>
-                            <option>Two</option>
-                            <option>Three</option>
-                            <option>Four</option>
-                            <option>Five</option>
-                            <option>Six</option>
-                        </select>
-                        </label>
-                        <label><h4>Class : </h4></label>
-                        <label><select class="form-control">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                            <option>6</option>
-                            <option>7</option>
-                        </select>
-                        </label>
+                    <div class="form-group">
+                        <div class="col-md-6 column">
+                            <div class="form-group">
+                                <label><h4>Grade : </h4></label>
+                                <select class="form-control" ng-model="gradeNo">
+                                    <option ng-selected="true" value="01">One</option>
+                                    <option value="02">Two</option>
+                                    <option value="03">Three</option>
+                                    <option value="04">Four</option>
+                                    <option value="05">Five</option>
+                                    <option value="06">Six</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6 column">
+                            <div class="form-group">
+                                <label><h4>Class : </h4></label>
+                                <select class="form-control" ng-model="classNo">
+                                    <option value="01" ng-selected="true">01</option>
+                                    <option value="02">02</option>
+                                    <option value="03">03</option>
+                                    <option value="04">04</option>
+                                    <option value="05">05</option>
+                                    <option value="06">06</option>
+                                    <option value="07">07</option>
+                                </select>
+                            </div>
+                            <input type="text" ng-show="false" id="branchId"
+                                   ng-value="[gradeNo]+[classNo]" ng-model="sUserDetail.branchId">
+                        </div>
+                    </div>
+                    <div>
+                        <span ng-model="fieldChangeMsg3" style="color:red">{{fieldChangeMsg3}}</span>
                     </div>
 
-                    <input type="submit" style="float: left" value="Previous" class="previous btn btn-danger btn-sm">
-                    <input type="submit" style="float: right" value="Go Now" class="btn btn-primary">
->>>>>>> origin/master
+
+                    <input type="button" style="float: left" value="Previous" class="previous btn btn-danger btn-sm">
+                    <input type="button" style="float: right" value="Go Now"
+                           ng-click="signup()"  class="next btn btn-primary">
 
                 </fieldset>
                 <!--添加fieldset 以显示创建的初始学生账号和密码，目前以alert形式显示-->
+                <fieldset>
+                    <h4 style="text-align:center">Remember Student Account</h4>
+                    <br>
+                    <div class="form-group" style="text-align:center">
+                        <div>
+                            <label>Account : </label>
+                            <span ng-model="sAccount" >{{sAccount}}</span>
+                        </div>
+                    </div>
+                    <div class="form-group" style="text-align:center">
+                        <div>
+                            <label>Password : </label>
+                            <span ng-model="sPassword" >{{sPassword}}</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input type="button" value="Log in Now"
+                               onclick="window.location.href='/page/login.html';" class="btn btn-primary center-block">
+                    </div>
+
+                </fieldset>
             </form>
 
 
@@ -222,8 +250,6 @@
         minView: 2,
         keyboardNavigation: true
     });
-</script>
-<script>
     $(function () {
 
         'use strict';
