@@ -48,20 +48,31 @@ public class TUserDetailBS implements ITUserDetail {
         tUserDetail = (TUserDetail) Utilities.combineBeans(tUserDetail,"",initTUserDetail);
         //validation
         ArrayList<String> msgList = this.tUserDetailBE.isValidForCreate(tUserDetail);
+        tUserDetail.setUserId(tUserLogin.getUserId());
+        tUserDetail.setMobilePhone(tUserLogin.getUserId());
         Utilities.setCurrentDateAndTime(tUserDetail,new String[]{"createDate"},
                                         new String[]{"yyyy-MM-dd"});
-        if(msgList.isEmpty() ){
-            //创建家长账户
-            msgList.addAll(this.userLoginService.create(tUserLogin));
-            int record = this.tUserDetailMapper.insert(tUserDetail);
-            if(record <= 0){
-                msgList.add("数据库插入家长信息错误");
+        try {
+            if(msgList.isEmpty() ){
+                //创建家长账户
+                msgList.addAll(this.userLoginService.create(tUserLogin));
+                int record = this.tUserDetailMapper.insert(tUserDetail);
+                if(record <= 0){
+                    msgList.add("数据库插入家长信息错误");
+                }
+            }
+            if(!msgList.isEmpty()) {
+                msgList.add("服务器创建老师账户信息错误");
+                throw new RuntimeException();
             }
         }
-        if(!msgList.isEmpty()) {
-            msgList.add("服务器创建老师账户信息错误");
+        catch (Exception e){
+            e.printStackTrace();
+            msgList.add("服务器异常");
             throw new RuntimeException();
         }
-        return msgList;
+        finally {
+            return msgList;
+        }
     }
 }

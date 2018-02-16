@@ -112,7 +112,6 @@
                             <label>Student Sex : </label>
                             <input type="radio" name="sex" ng-checked="true" ng-model="sUserDetail.gender" ng-value="1"> <i class="fa fa-mars"> Boy </i>
                             <input type="radio" name="sex" ng-model="sUserDetail.gender" ng-value="0"> <i class="fa fa-venus"> Girl </i>
-                            <span>{{sUserDetail.gender}}</span>
                         </div>
                     </div>
 
@@ -136,8 +135,6 @@
                     <input type="button" style="float: left" value="Previous" class="previous btn btn-danger btn-sm">
                     <input type="button" style="float: right" value="Next"
                            ng-click="createStudentInformation()" class="next btn btn-primary">
-
-
                 </fieldset>
 
                 <fieldset>

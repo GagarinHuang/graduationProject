@@ -13,6 +13,7 @@ public class TUserDetailBE {
     }
 
     public void assignDefaults(TUserDetail tUserDetail){
+        tUserDetail.setActive(true);
         tUserDetail.setRoleId((short) 3);
     }
 

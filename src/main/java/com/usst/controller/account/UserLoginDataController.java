@@ -50,7 +50,7 @@ public class UserLoginDataController {
         Map<String, String> rmap = new HashMap<String, String>();
         if(fieldName.equals("userId")){
             UserLogin userLogin = this.userLoginService.fetch(fieldValue);
-            if(userLogin != null){
+            if(userLogin != null && userLogin.getUserId() != null ){
                 rmap.put("msg","用户已存在");
             }
             else {
