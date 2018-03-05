@@ -1,0 +1,51 @@
+
+	<!--<h2>Cascade CheckBox in TreeGrid</h2>-->
+	<!--<p>TreeGrid nodes with cascade check boxes.</p>-->
+	<!--<div style="margin:20px 0;"></div>-->
+	<!--<table title="Folder Browser" class="easyui-treegrid" style="width:700px;height:250px"-->
+			<!--data-options="-->
+				<!--url: 'treegrid_data1.json',-->
+				<!--method: 'get',-->
+				<!--checkbox: true,-->
+				<!--rownumbers: false,-->
+				<!--idField: 'id',-->
+				<!--treeField: 'name'-->
+			<!--">-->
+		<!--<thead>-->
+			<!--<tr>-->
+				<!--<th data-options="field:'name'" width="220">Name</th>-->
+				<!--<th data-options="field:'size'" width="100" align="right">Size</th>-->
+				<!--<th data-options="field:'date'" width="150">Modified Date</th>-->
+			<!--</tr>-->
+		<!--</thead>-->
+	<!--</table>-->
+    <div style="margin:20px 0;">
+        <a href="#" class="easyui-linkbutton" onclick="group()">Group</a>
+        <a href="#" class="easyui-linkbutton" onclick="ungroup()">Ungroup</a>
+        <a href="#" class="easyui-linkbutton" onclick="">Delete</a>
+    </div>
+	<table id ="test" title="Folder Browser" class="easyui-treegrid" style="width:700px;height:250px"
+		   data-options="
+				url: 'http://localhost:8080/questionSet/getList',
+				method: 'get',
+				checkbox: true,
+				rownumbers: false,
+				idField: 'id',
+				treeField: 'description'
+			">
+		<thead>
+		<tr>
+			<th data-options="
+								field:'description',
+								formatter:function(value,row){
+									var text = formatToHref(value,row);
+									return text;
+								}">
+			description</th>
+			<th data-options="field:'subjectId'" width="100" align="right">subjectId</th>
+		</tr>
+		</thead>
+	</table>
+	<script type="text/javascript">
+
+	</script>

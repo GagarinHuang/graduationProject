@@ -1,9 +1,9 @@
 package com.usst.service.api.question;
 
-import com.usst.entity.question.Subject;
+import com.usst.entity.question.ExamType;
 
 import java.util.ArrayList;
 
 public interface IExamType {
-    public ArrayList<Subject> getList();
+    public ArrayList<ExamType> getList();
 }

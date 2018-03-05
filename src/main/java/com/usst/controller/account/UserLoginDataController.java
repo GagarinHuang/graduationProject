@@ -21,11 +21,14 @@ public class UserLoginDataController {
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     @ResponseBody
-    public Map<String,Boolean> loginApi(@RequestBody UserLogin userLogin,HttpSession session){
+    public Map<String,Object> loginApi(@RequestBody UserLogin userLogin,HttpSession session){
         System.out.println("loginApi()");
-        Map<String,Boolean> rmap = new HashMap<String,Boolean>();
+        Map<String,Object> rmap = new HashMap<String,Object>();
         boolean result = userLoginService.login(userLogin.getUserId(),userLogin.getUserPassword(),session);
         rmap.put("result",result);
+        if(result == true) {
+            rmap.put("roleId",userLoginService.fetchRole(userLogin.getUserId()));
+        }
         return rmap;
     }
 

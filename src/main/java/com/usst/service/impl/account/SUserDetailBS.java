@@ -43,4 +43,11 @@ public class SUserDetailBS implements ISUserDetail{
         }
         return msgList;
     }
+
+    @Override
+    public SUserDetail fetch(String userId) {
+
+        SUserDetail sUserDetail = this.sUserDetailMapper.selectByPrimaryKey(userId);
+        return  sUserDetail;
+    }
 }

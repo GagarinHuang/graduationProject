@@ -75,4 +75,11 @@ public class TUserDetailBS implements ITUserDetail {
             return msgList;
         }
     }
+
+    @Override
+    public TUserDetail fetch(String userId) {
+
+        TUserDetail tUserDetail = this.tUserDetailMapper.selectByPrimaryKey(userId);
+        return  tUserDetail;
+    }
 }

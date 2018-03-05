@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.usst.dao.question.QuestionsetDetailMapper" >
+  <resultMap id="BaseResultMap" type="com.usst.entity.question.QuestionsetDetail" >
+    <id column="questionset_set_id" property="questionsetSetId" jdbcType="VARCHAR" />
+    <result column="question_set_name" property="questionSetName" jdbcType="VARCHAR" />
+    <result column="level_id" property="levelId" jdbcType="VARCHAR" />
+    <result column="subject_id" property="subjectId" jdbcType="VARCHAR" />
+    <result column="textbook_id" property="textbookId" jdbcType="VARCHAR" />
+    <result column="editor_id" property="editorId" jdbcType="VARCHAR" />
+    <result column="createdate" property="createdate" jdbcType="TIMESTAMP" />
+    <result column="exam_type_id" property="examTypeId" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.usst.entity.question.QuestionsetDetail" extends="BaseResultMap" >
+    <result column="description" property="description" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    questionset_set_id, question_set_name, level_id, subject_id, textbook_id, editor_id, 
+    createdate, exam_type_id
+  </sql>
+  <sql id="Blob_Column_List" >
+    description
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from questionset_detail
+    where questionset_set_id = #{questionsetSetId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from questionset_detail
+    where questionset_set_id = #{questionsetSetId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.usst.entity.question.QuestionsetDetail" >
+    insert into questionset_detail (questionset_set_id, question_set_name, 
+      level_id, subject_id, textbook_id, 
+      editor_id, createdate, exam_type_id, 
+      description)
+    values (#{questionsetSetId,jdbcType=VARCHAR}, #{questionSetName,jdbcType=VARCHAR}, 
+      #{levelId,jdbcType=VARCHAR}, #{subjectId,jdbcType=VARCHAR}, #{textbookId,jdbcType=VARCHAR}, 
+      #{editorId,jdbcType=VARCHAR}, #{createdate,jdbcType=TIMESTAMP}, #{examTypeId,jdbcType=VARCHAR}, 
+      #{description,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.usst.entity.question.QuestionsetDetail" >
+    insert into questionset_detail
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="questionsetSetId != null" >
+        questionset_set_id,
+      </if>
+      <if test="questionSetName != null" >
+        question_set_name,
+      </if>
+      <if test="levelId != null" >
+        level_id,
+      </if>
+      <if test="subjectId != null" >
+        subject_id,
+      </if>
+      <if test="textbookId != null" >
+        textbook_id,
+      </if>
+      <if test="editorId != null" >
+        editor_id,
+      </if>
+      <if test="createdate != null" >
+        createdate,
+      </if>
+      <if test="examTypeId != null" >
+        exam_type_id,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="questionsetSetId != null" >
+        #{questionsetSetId,jdbcType=VARCHAR},
+      </if>
+      <if test="questionSetName != null" >
+        #{questionSetName,jdbcType=VARCHAR},
+      </if>
+      <if test="levelId != null" >
+        #{levelId,jdbcType=VARCHAR},
+      </if>
+      <if test="subjectId != null" >
+        #{subjectId,jdbcType=VARCHAR},
+      </if>
+      <if test="textbookId != null" >
+        #{textbookId,jdbcType=VARCHAR},
+      </if>
+      <if test="editorId != null" >
+        #{editorId,jdbcType=VARCHAR},
+      </if>
+      <if test="createdate != null" >
+        #{createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="examTypeId != null" >
+        #{examTypeId,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.usst.entity.question.QuestionsetDetail" >
+    update questionset_detail
+    <set >
+      <if test="questionSetName != null" >
+        question_set_name = #{questionSetName,jdbcType=VARCHAR},
+      </if>
+      <if test="levelId != null" >
+        level_id = #{levelId,jdbcType=VARCHAR},
+      </if>
+      <if test="subjectId != null" >
+        subject_id = #{subjectId,jdbcType=VARCHAR},
+      </if>
+      <if test="textbookId != null" >
+        textbook_id = #{textbookId,jdbcType=VARCHAR},
+      </if>
+      <if test="editorId != null" >
+        editor_id = #{editorId,jdbcType=VARCHAR},
+      </if>
+      <if test="createdate != null" >
+        createdate = #{createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="examTypeId != null" >
+        exam_type_id = #{examTypeId,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where questionset_set_id = #{questionsetSetId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.usst.entity.question.QuestionsetDetail" >
+    update questionset_detail
+    set question_set_name = #{questionSetName,jdbcType=VARCHAR},
+      level_id = #{levelId,jdbcType=VARCHAR},
+      subject_id = #{subjectId,jdbcType=VARCHAR},
+      textbook_id = #{textbookId,jdbcType=VARCHAR},
+      editor_id = #{editorId,jdbcType=VARCHAR},
+      createdate = #{createdate,jdbcType=TIMESTAMP},
+      exam_type_id = #{examTypeId,jdbcType=VARCHAR},
+      description = #{description,jdbcType=LONGVARCHAR}
+    where questionset_set_id = #{questionsetSetId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.usst.entity.question.QuestionsetDetail" >
+    update questionset_detail
+    set question_set_name = #{questionSetName,jdbcType=VARCHAR},
+      level_id = #{levelId,jdbcType=VARCHAR},
+      subject_id = #{subjectId,jdbcType=VARCHAR},
+      textbook_id = #{textbookId,jdbcType=VARCHAR},
+      editor_id = #{editorId,jdbcType=VARCHAR},
+      createdate = #{createdate,jdbcType=TIMESTAMP},
+      exam_type_id = #{examTypeId,jdbcType=VARCHAR}
+    where questionset_set_id = #{questionsetSetId,jdbcType=VARCHAR}
+  </update>
+</mapper>

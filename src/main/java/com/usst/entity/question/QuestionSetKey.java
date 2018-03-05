@@ -1,4 +1,4 @@
-package com.usst.entity.account;
+package com.usst.entity.question;
 
 public class QuestionSetKey {
     private String questionSetId;

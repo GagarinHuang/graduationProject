@@ -463,4 +463,10 @@
       comment = #{comment,jdbcType=VARCHAR}
     where question_id = #{questionId,jdbcType=VARCHAR}
   </update>
+  <update id="updateQSIdByPrimaryKey" parameterType="com.usst.entity.question.Question" >
+    update question
+    set
+    question_set_id = #{questionSetId,jdbcType=VARCHAR}
+    where question_id = #{questionId,jdbcType=VARCHAR}
+  </update>
 </mapper>

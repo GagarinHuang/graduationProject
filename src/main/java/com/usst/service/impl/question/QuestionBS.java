@@ -1,7 +1,9 @@
 package com.usst.service.impl.question;
 
 import com.usst.dao.question.QuestionMapper;
+import com.usst.dao.question.QuestionSetMapper;
 import com.usst.entity.question.Question;
+import com.usst.entity.question.QuestionSet;
 import com.usst.service.Utilities;
 import com.usst.service.api.question.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +20,8 @@ public class QuestionBS implements IQuestion {
 
     @Resource
     private QuestionMapper questionMapper;
+    @Resource
+    private QuestionSetMapper questionSetMapper;
     @Autowired
     private QuestionBE questionBE;
     @Resource
@@ -58,9 +62,14 @@ public class QuestionBS implements IQuestion {
         this.questionBE.initialize(initQuestion);
         question = (Question) Utilities.combineBeans(question,"",initQuestion);
         question.setQuestionId(Utilities.getOrderIdByUUId("q",20));
+        question.setQuestionSetId("Ungroup");
         question.setUserId((String) session.getAttribute("userId"));
+        this.questionBE.splitItems(question);
+        //question.setUserId("13681812138");
+        question.setQuestionType((short) 1);
+        Utilities.setCurrentDateAndTime(question,new String[]{"timestamp"},
+                new String[]{"YYYY-MM-DD HH:MM:SS"});
         ArrayList<String> msgList = new ArrayList<String>();
-
         //resolve file upload
         try {
             this.questionBE.changeMultipartFileToBytes(question);
@@ -73,8 +82,17 @@ public class QuestionBS implements IQuestion {
 
         if(msgList.isEmpty()) {
             int result = this.questionMapper.insert(question);
+            //TODO:相关qs操作包括question_set,question_set_detail
             if(result <= 0 ){
-                msgList.add("数据创建异常！");
+                msgList.add("创建question异常！");
+            }
+            QuestionSet qs = new QuestionSet();
+            qs.setQuestionSetId(question.getQuestionSetId());
+            qs.setQuestionId(question.getQuestionId());
+            qs.setQuestionMark(question.getGrade());
+            result = this.questionSetMapper.insert(qs);
+            if(result <= 0 ){
+                msgList.add("创建questionSet异常！");
             }
         }
         //add some related creation

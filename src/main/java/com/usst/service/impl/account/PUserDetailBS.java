@@ -90,4 +90,11 @@ public class PUserDetailBS implements IPUserDetail {
             return msgList;
         }
     }
+
+    @Override
+    public PUserDetail fetch(String userId) {
+
+        PUserDetail pUserDetail = this.pUserDetailMapper.selectByPrimaryKey(userId);
+        return  pUserDetail;
+    }
 }

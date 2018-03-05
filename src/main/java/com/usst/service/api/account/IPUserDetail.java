@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 public interface IPUserDetail {
 
+    public PUserDetail fetch(String userId);
     public ArrayList<Object> initialize(PUserDetail pUserDetail);
     public ArrayList<String> create(PUserDetail pUserDetail, UserLogin pUserLogin, SUserDetail sUserDetail, UserLogin sUserLogin);
 }

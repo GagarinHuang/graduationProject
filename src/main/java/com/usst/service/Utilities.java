@@ -8,7 +8,9 @@ import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.UUID;
 
 public class Utilities{
@@ -22,10 +24,9 @@ public class Utilities{
      *@return 生成的唯一标识性id
      * */
     public static String getOrderIdByUUId(String first,int count) {
-        System.out.println(first);
         int hashCodeV = UUID.randomUUID().toString().hashCode();
         if (hashCodeV < 0) {//有可能是负数
-            hashCodeV = -hashCodeV;
+            hashCodeV = -hashCodeV;//10位
         }
         // 0 代表前面补充0
         // d 代表参数为正数型
@@ -78,9 +79,7 @@ public class Utilities{
         String fieldType       = null;
         Field  field           = null;
         DateFormat fmt   = null;
-        System.out.println("-----set c d t-----");
         for(int i=0; i<Math.min(fieldsName.length,formats.length); i++) {
-            System.out.println(fieldsName[i]);
             fieldName = fieldsName[i];
             fmt=new SimpleDateFormat(formats[i]);
             try {
@@ -89,7 +88,6 @@ public class Utilities{
                 field.setAccessible(true);
 
                 now = fmt.format(new Date());
-                System.out.println(now.toString());
                 fieldType = field.getGenericType().toString();
                 //字段类型为String
                 if (fieldType.equals("class java.lang.String")) {
@@ -110,6 +108,7 @@ public class Utilities{
             }
         }
     }
+
     public static void main(String[] args) {
         //test getOrderIdByUUId
         String orderingID= getOrderIdByUUId("q",16);
@@ -140,6 +139,8 @@ public class Utilities{
         Question testQ = new Question();
         Utilities.setCurrentDateAndTime(testQ, new String[]{"timestamp"}, new String[]{"yyyy-MM-dd hh:mm:ss"});
         System.out.println(testQ.getTimestamp());
+
+        System.out.println(Utilities.getOrderIdByUUId("qs",9));
 
     }
 }

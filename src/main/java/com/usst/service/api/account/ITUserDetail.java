@@ -9,5 +9,6 @@ import java.util.ArrayList;
 
 public interface ITUserDetail {
     public ArrayList<Object> initialize(TUserDetail tUserDetail);
+    public TUserDetail fetch(String userId);
     public ArrayList<String> create(TUserDetail tUserDetail, UserLogin tUserLogin);
 }

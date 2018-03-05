@@ -2,11 +2,16 @@ package com.usst.entity.question;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 public class Question {
     /*题目id*/
     private String questionId;
+
+    //为了前台json树型结构
+    private String id;
+
     /*阶段id*/
     private String levelId;
     /*知识领域（学科）id*/
@@ -42,6 +47,9 @@ public class Question {
     private String itemD;
 
     private String itemE;
+
+    private ArrayList<String> items;
+
     /*答案*/
     private String answer;
     /*选项A附件*/
@@ -412,5 +420,21 @@ public class Question {
 
     public void setAttachExplanationFile(MultipartFile attachExplanationFile) {
         this.attachExplanationFile = attachExplanationFile;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public ArrayList<String> getItems() {
+        return items;
+    }
+
+    public void setItems(ArrayList<String> items) {
+        this.items = items;
     }
 }

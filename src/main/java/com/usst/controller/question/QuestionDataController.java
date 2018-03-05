@@ -1,7 +1,6 @@
 package com.usst.controller.question;
 
 import com.usst.entity.question.Question;
-import com.usst.service.api.account.IUserLogin;
 import com.usst.service.api.question.IQuestion;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -29,7 +28,8 @@ public class QuestionDataController {
     /*
     * @return 返回一些object,类似question初始值，level list....
     * */
-    @RequestMapping("/initialize")
+    @RequestMapping(value = "/initialize", method = RequestMethod.GET)
+    @ResponseBody
     public Map<String,Object> initializeApi(Question question){
         System.out.println("initializeApi()");
         Map<String,Object> rmap = new HashMap<String,Object>();
@@ -38,25 +38,27 @@ public class QuestionDataController {
         rmap.put("examTypeList",entityList.get(1));
         rmap.put("textBookList",entityList.get(2));
         rmap.put("subjectList",entityList.get(3));
-        rmap.put("questionList",entityList.get(4));
+        rmap.put("question",entityList.get(4));
+        rmap.put("msg","success");
         return rmap;
     }
 
     @RequestMapping(value = "/fetch", method = RequestMethod.GET)
-    @ResponseBody
-    public ModelAndView fetchApi(@RequestBody Question question, HttpServletRequest request){
+    public ModelAndView fetchApi(@RequestParam(required = true,value = "questionId") String questionId,
+                                 HttpServletRequest request){
         System.out.println("fetchApi()");
-        question = questionService.fetch(question.getUserId());
+        Question question = questionService.fetch(questionId);
         request.setAttribute("question", question);
-        return new ModelAndView("redirect:/paper/XXX.jsp");
+        return new ModelAndView("forward:/page/teacherIndex.jsp");
     }
 
     /*
     * @return 返回消息列表
     * */
     @RequestMapping("/create")
+    @ResponseBody
     public Map<String,Object> createApi(Question question,HttpSession session){
-        System.out.println("fetchApi()");
+        System.out.println("createApi()");
         Map<String,Object> rmap = new HashMap<String,Object>();
         this.msgList = questionService.create(question,session);
         rmap.put("msgList",this.msgList);
@@ -64,6 +66,7 @@ public class QuestionDataController {
     }
 
     @RequestMapping("/update")
+    @ResponseBody
     public Map<String,Object> updateApi(Question question){
         System.out.println("updateApi()");
         Map<String,Object> rmap = new HashMap<String,Object>();
@@ -73,6 +76,7 @@ public class QuestionDataController {
     }
 
     @RequestMapping("/delete")
+    @ResponseBody
     public Map<String,Object> deleteApi(Question question){
         System.out.println("updateApi()");
         Map<String,Object> rmap = new HashMap<String,Object>();
@@ -88,9 +92,11 @@ public class QuestionDataController {
     public void fetchAttach(@RequestParam(required = true) String fieldName,
                             @RequestParam(required = true) String questionId,
                             HttpServletResponse response) {
+        System.out.println("fetchAttach()");
         Question question = questionService.fetch(questionId);
         try {
             Field field = question.getClass().getDeclaredField(fieldName);
+            field.setAccessible(true);
             //获取属性值
             byte[] bb = (byte[]) field.get(question);
             // 禁止图像缓存。
@@ -100,6 +106,9 @@ public class QuestionDataController {
             response.setContentType("image/png");
             // 将图像输出到Servlet输出流中。
             ServletOutputStream sos = response.getOutputStream();
+            System.out.println("bb==null:"+bb==null);
+            System.out.println("sos==null:"+sos==null);
+            System.out.println(bb.length);
             sos.write(bb, 0, bb.length);
             sos.close();
         } catch (NoSuchFieldException e) {
@@ -117,7 +126,7 @@ public class QuestionDataController {
     public ModelAndView getList(HttpSession session) {
         ArrayList<Question> qList = questionService.getList(session);
         session.setAttribute("questionList",qList);
-        return new ModelAndView("redirect:/paper/XXX.jsp");
+        return new ModelAndView("/paper/XXX.jsp");
     }
 
 }

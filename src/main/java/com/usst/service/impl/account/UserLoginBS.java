@@ -1,7 +1,12 @@
 package com.usst.service.impl.account;
-import com.usst.controller.account.UserLoginDataController;
 import com.usst.dao.account.UserLoginMapper;
+import com.usst.entity.account.PUserDetail;
+import com.usst.entity.account.SUserDetail;
+import com.usst.entity.account.TUserDetail;
 import com.usst.entity.account.UserLogin;
+import com.usst.service.api.account.IPUserDetail;
+import com.usst.service.api.account.ISUserDetail;
+import com.usst.service.api.account.ITUserDetail;
 import com.usst.service.api.account.IUserLogin;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +23,15 @@ public class UserLoginBS implements IUserLogin {
 
     @Resource
     private UserLoginMapper userLoginMapper;
+
+    @Resource
+    IPUserDetail pUserDetailService;
+
+    @Resource
+    ISUserDetail sUserDetailService;
+
+    @Resource
+    ITUserDetail tUserDetailService;
 
     public void setUserLoginBE(UserLoginBE userLoginBE) {
         this.userLoginBE = userLoginBE;
@@ -52,6 +66,25 @@ public class UserLoginBS implements IUserLogin {
     public UserLogin fetch(String userId) {
         UserLogin userLogin = this.userLoginMapper.selectByPrimaryKey(userId);
         return userLogin;
+    }
+
+    @Override
+    public Short fetchRole(String userId) {
+        Short roleId = 0;
+        PUserDetail pUserDetail;
+        SUserDetail sUserDetail;
+        TUserDetail tUserDetail;
+        if((pUserDetail = this.pUserDetailService.fetch(userId)) != null){
+            roleId = pUserDetail.getRoleId();
+        }
+        else if((sUserDetail = this.sUserDetailService.fetch(userId)) != null){
+            roleId = sUserDetail.getRoleId();
+        }
+        else if ((tUserDetail = this.tUserDetailService.fetch(userId)) != null){
+            roleId = tUserDetail.getRoleId();
+        }
+        //add administrator
+        return roleId;
     }
 
 }

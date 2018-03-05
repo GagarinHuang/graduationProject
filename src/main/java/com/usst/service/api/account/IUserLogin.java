@@ -15,4 +15,6 @@ public interface IUserLogin {
     ArrayList<String> create(UserLogin userLogin);
 
     UserLogin fetch(String userId);
+
+    Short fetchRole(String userId);
 }
